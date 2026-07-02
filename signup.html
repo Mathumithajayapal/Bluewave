@@ -584,6 +584,34 @@
     input:focus, button:focus {
       outline: none;
     }
+            .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      color: var(--pool-primary);
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover .logo-icon {
+      transform: scale(0.98);
+      color: var(--pool-dark);
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+    }
   </style>
 </head>
 <body>
@@ -606,7 +634,9 @@
     <div class="brand-logo">
       <div class="logo">
         <!-- brand text that flips based on RTL -->
-        <span class="brand-text" id="brandText">Bluewave</span>
+        <a href="index.html" class="logo">
+      <span class="logo-text">Bluewave</span>
+    </a>
       </div>
       
     </div>

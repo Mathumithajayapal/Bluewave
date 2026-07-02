@@ -722,7 +722,7 @@
         <div class="brand-logo">
             <div class="logo">
                 <a href="index.html" class="logo">
-      <span class="logo-text">Bluewave</span>
+      <span class="logo-text" id="brandText">Bluewave</span> <!-- ADDED MISSING ID HERE -->
     </a>
             </div>
         </div>
@@ -839,18 +839,20 @@
             function setRTL(enable) {
                 if (enable) {
                     htmlElem.setAttribute('dir', 'rtl');
+                    document.body.setAttribute('dir', 'rtl'); // ADDED THIS TO FIX CSS TARGETING
                     localStorage.setItem('bluewaveRTL', 'true');
                     if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-arrow-left"></i> <span>LTR</span>';
                     // Swap brand and heading text to reversed versions
-                    brandText.textContent = reverseString('Bluewave');   // "ewaweulB"
-                    headingText.textContent = reverseString('welcome back'); // "kcab emoclew"
+                    if(brandText) brandText.textContent = reverseString('Bluewave');   // "ewaweulB"
+                    if(headingText) headingText.textContent = reverseString('welcome back'); // "kcab emoclew"
                 } else {
                     htmlElem.setAttribute('dir', 'ltr');
+                    document.body.setAttribute('dir', 'ltr'); // ADDED THIS TO FIX CSS TARGETING
                     localStorage.setItem('bluewaveRTL', 'false');
                     if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
                     // Restore original text
-                    brandText.textContent = 'Bluewave';
-                    headingText.textContent = 'welcome back';
+                    if(brandText) brandText.textContent = 'Bluewave';
+                    if(headingText) headingText.textContent = 'welcome back';
                 }
             }
 

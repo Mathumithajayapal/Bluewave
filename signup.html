@@ -265,7 +265,7 @@
       background: transparent;
       border: 1.5px solid var(--input-border);
       border-radius: 1.2rem;
-      padding: 0.5rem 0.9rem;   /* reduced vertical padding from 0.7rem to 0.5rem */
+      padding: 0.5rem 0.9rem;  /* reduced vertical padding from 0.7rem to 0.5rem */
       margin-bottom: 0.85rem;    /* reduced gap */
       transition: all 0.2s ease;
       gap: 0.5rem;
@@ -635,7 +635,7 @@
       <div class="logo">
         <!-- brand text that flips based on RTL -->
         <a href="index.html" class="logo">
-      <span class="logo-text">Bluewave</span>
+      <span class="logo-text" id="brandText">Bluewave</span> <!-- ADDED MISSING ID HERE -->
     </a>
       </div>
       
@@ -768,17 +768,19 @@
       function setRTL(enable) {
         if (enable) {
           htmlElem.setAttribute('dir', 'rtl');
+          document.body.setAttribute('dir', 'rtl'); // ADDED THIS TO MAKE YOUR CSS TARGETING WORK
           localStorage.setItem('bluewaveRTL', 'true');
           if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-arrow-left"></i> <span>LTR</span>';
           // flip brand and tagline for RTL (wave → ewaW, join the wave → wave the join)
-          brandText.textContent = 'ewaweulB';   // Bluewave reversed (approx visual)
-          headingTagline.textContent = 'wave the join'; // flipped order
+          if(brandText) brandText.textContent = 'ewaweulB';   // Bluewave reversed (approx visual)
+          if(headingTagline) headingTagline.textContent = 'wave the join'; // flipped order
         } else {
           htmlElem.setAttribute('dir', 'ltr');
+          document.body.setAttribute('dir', 'ltr'); // ADDED THIS TO MAKE YOUR CSS TARGETING WORK
           localStorage.setItem('bluewaveRTL', 'false');
           if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
-          brandText.textContent = 'Bluewave';
-          headingTagline.textContent = 'join the wave';
+          if(brandText) brandText.textContent = 'Bluewave';
+          if(headingTagline) headingTagline.textContent = 'join the wave';
         }
       }
 

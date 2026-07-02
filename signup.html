@@ -200,6 +200,11 @@
       letter-spacing: -0.3px;
     }
 
+    /* RTL aware brand text: we use data attribute to swap content */
+    .brand-text {
+      transition: all 0.2s;
+    }
+
     .service-subtitle {
       text-align: center;
       font-size: 0.65rem;      /* smaller to match card density */
@@ -229,6 +234,7 @@
       -webkit-background-clip: text;
       color: transparent;
       margin-bottom: 0.1rem;
+      transition: all 0.2s;
     }
 
     body.dark .form-heading h2 {
@@ -599,13 +605,14 @@
     <!-- Bluewave Brand Logo with pool identity -->
     <div class="brand-logo">
       <div class="logo">
-        <span>Bluewave</span>
+        <!-- brand text that flips based on RTL -->
+        <span class="brand-text" id="brandText">Bluewave</span>
       </div>
       
     </div>
 
     <div class="form-heading">
-      <h2>join the wave</h2>
+      <h2 id="headingTagline">join the wave</h2>
       <p>create an account to manage pool chemistry & cleaning on the go</p>
     </div>
 
@@ -689,6 +696,8 @@
       const appleBtn = document.getElementById('appleSignup');
       const termsLink = document.getElementById('termsLink');
       const privacyLink = document.getElementById('privacyLink');
+      const brandText = document.getElementById('brandText');
+      const headingTagline = document.getElementById('headingTagline');
 
       function showDemoMessage(msg, isError = false) {
         alert(msg);
@@ -722,22 +731,30 @@
         updateDarkUI(isDark);
       });
 
-      // ----- RTL TOGGLE -----
+      // ----- RTL TOGGLE + FLIP BRAND & TAGLINE -----
       const rtlToggle = document.getElementById('rtlToggle');
       const htmlElem = document.documentElement;
+      
       function setRTL(enable) {
         if (enable) {
           htmlElem.setAttribute('dir', 'rtl');
           localStorage.setItem('bluewaveRTL', 'true');
           if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-arrow-left"></i> <span>LTR</span>';
+          // flip brand and tagline for RTL (wave → ewaW, join the wave → wave the join)
+          brandText.textContent = 'ewaweulB';   // Bluewave reversed (approx visual)
+          headingTagline.textContent = 'wave the join'; // flipped order
         } else {
           htmlElem.setAttribute('dir', 'ltr');
           localStorage.setItem('bluewaveRTL', 'false');
           if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
+          brandText.textContent = 'Bluewave';
+          headingTagline.textContent = 'join the wave';
         }
       }
+
       const savedRTL = localStorage.getItem('bluewaveRTL');
       setRTL(savedRTL === 'true');
+
       rtlToggle.addEventListener('click', () => {
         const isRTL = htmlElem.getAttribute('dir') === 'rtl';
         setRTL(!isRTL);

@@ -171,7 +171,7 @@
             box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.9), 0 4px 18px rgba(0, 0, 0, 0.5);
         }
 
-        /* Brand area — always centered, always LTR */
+        /* Brand area — always centered */
         .brand-logo {
             display: flex;
             flex-direction: column;
@@ -187,7 +187,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             text-decoration: none;
-            /* Force LTR for the brand name */
+            /* Force LTR for the brand container, but text content will be swapped via JS */
             direction: ltr;
             unicode-bidi: normal;
         }
@@ -221,11 +221,10 @@
             backdrop-filter: blur(2px);
         }
 
-        /* Form heading — always centered, always LTR */
+        /* Form heading — centered, text content swapped via JS */
         .form-heading {
             text-align: center;
             margin-bottom: 1rem;
-            /* Force LTR for heading text */
             direction: ltr;
             unicode-bidi: normal;
         }
@@ -240,7 +239,6 @@
             -webkit-background-clip: text;
             color: transparent;
             margin-bottom: 0.2rem;
-            /* Force LTR */
             direction: ltr;
             unicode-bidi: normal;
         }
@@ -255,7 +253,6 @@
             font-size: 0.7rem;
             color: var(--text-soft);
             font-weight: 400;
-            /* Force LTR */
             direction: ltr;
             unicode-bidi: normal;
         }
@@ -542,7 +539,7 @@
         /* 11. Checkbox label: fine as-is */
 
         /* ============================================================
-                   BRAND & HEADING — FORCED LTR (do not flip)
+                   BRAND & HEADING — container stays LTR, but text swapped via JS
                    ============================================================ */
         .brand-logo,
         .logo,
@@ -692,16 +689,16 @@
     </div>
 
     <div class="login-card">
-        <!-- Bluewave Brand Logo — always LTR, always centered -->
+        <!-- Bluewave Brand Logo — text swapped via JS -->
         <div class="brand-logo">
             <div class="logo">
-                <span>Bluewave</span>
+                <span id="brandText">Bluewave</span>
             </div>
         </div>
 
-        <!-- Form heading — always LTR, always centered -->
+        <!-- Form heading — text swapped via JS -->
         <div class="form-heading">
-            <h2>welcome back</h2>
+            <h2 id="headingText">welcome back</h2>
             <p>sign in to manage pool chemistry &amp; cleaning on the go</p>
         </div>
 
@@ -767,6 +764,10 @@
             const facebookIcon = document.getElementById('facebookIcon');
             const appleIcon = document.getElementById('appleIcon');
 
+            // Elements for text swapping
+            const brandText = document.getElementById('brandText');
+            const headingText = document.getElementById('headingText');
+
             function showDemoMessage(msg, isError) {
                 alert(msg);
             }
@@ -795,21 +796,33 @@
                 updateDarkUI(isDark);
             });
 
-            // ----- RTL TOGGLE — flips form elements only, brand & heading stay LTR -----
+            // ----- RTL TOGGLE — flips form elements AND swaps brand/heading text -----
             const rtlToggle = document.getElementById('rtlToggle');
             const htmlElem = document.documentElement;
+
+            // Reverse string helper
+            function reverseString(str) {
+                return str.split('').reverse().join('');
+            }
 
             function setRTL(enable) {
                 if (enable) {
                     htmlElem.setAttribute('dir', 'rtl');
                     localStorage.setItem('bluewaveRTL', 'true');
                     if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-arrow-left"></i> <span>LTR</span>';
+                    // Swap brand and heading text to reversed versions
+                    brandText.textContent = reverseString('Bluewave');   // "ewaweulB"
+                    headingText.textContent = reverseString('welcome back'); // "kcab emoclew"
                 } else {
                     htmlElem.setAttribute('dir', 'ltr');
                     localStorage.setItem('bluewaveRTL', 'false');
                     if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
+                    // Restore original text
+                    brandText.textContent = 'Bluewave';
+                    headingText.textContent = 'welcome back';
                 }
             }
+
             const savedRTL = localStorage.getItem('bluewaveRTL');
             setRTL(savedRTL === 'true');
             rtlToggle.addEventListener('click', function() {

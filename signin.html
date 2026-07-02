@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Bluewave · Mobile Pool Service Login</title>
+    <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">
+
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ----- LIGHT MODE (crisp white background) ----- */
+        :root {
+            --bg-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --card-border: rgba(108, 192, 186, 0.35);
+            --text-primary: #1b3b3a;
+            --text-soft: #2b6b66;
+            --label-color: #2b6b66;
+            --input-border: #d1ece9;
+            --input-focus-border: #6CC0BA;
+            --icon-color: #7cc9c2;
+            --icon-focus: #6CC0BA;
+            --btn-gradient-start: #6CC0BA;
+            --btn-gradient-end: #51aca5;
+            --btn-shadow: rgba(68, 148, 140, 0.25);
+            --divider-color: #cee9e6;
+            --social-bg: #f2fcfb;
+            --social-border: #c6e4e1;
+            --social-icon-color: #6CC0BA;
+            --hint-bg: rgba(108, 192, 186, 0.12);
+            --link-color: #6CC0BA;
+            --link-hover: #479f99;
+            --checkbox-accent: #6CC0BA;
+            --forgot-color: #6CC0BA;
+            --logo-icon: #6CC0BA;
+            --logo-gradient-start: #6CC0BA;
+            --logo-gradient-end: #3d958e;
+        }
+
+        /* ----- DARK MODE — absolute black background + deep charcoal card ----- */
+        body.dark {
+            --bg-color: #000000;
+            --card-bg: #121212;
+            --card-border: #2c2c2c;
+            --text-primary: #F0F0F0;
+            --text-soft: #B0B0B0;
+            --label-color: #C5C5C5;
+            --input-border: #2E2E2E;
+            --input-focus-border: #7CC0BA;
+            --icon-color: #7BAAA5;
+            --icon-focus: #9ADED7;
+            --btn-gradient-start: #2D6A66;
+            --btn-gradient-end: #479f99;
+            --btn-shadow: rgba(0, 0, 0, 0.8);
+            --divider-color: #2A2A2A;
+            --social-bg: #1F1F1F;
+            --social-border: #3A3A3A;
+            --social-icon-color: #7CC0BA;
+            --hint-bg: rgba(60, 60, 60, 0.85);
+            --link-color: #7CC0BA;
+            --link-hover: #A9E6E0;
+            --checkbox-accent: #7CC0BA;
+            --forgot-color: #7CC0BA;
+            --logo-icon: #7CC0BA;
+            --logo-gradient-start: #7CC0BA;
+            --logo-gradient-end: #479f99;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-color);
+            font-family: 'Inter', sans-serif;
+            transition: background 0.28s ease, color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.25rem;
+            padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+            position: relative;
+        }
+
+        /* Remove all blobs/shapes */
+        .shape-bg,
+        .blob-1,
+        .blob-2 {
+            display: none !important;
+        }
+
+        /* ----- FIXED CONTROLS PANEL (proper spacing, no overlap) ----- */
+        .controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 200;
+            display: flex;
+            gap: 0.6rem;
+            background: rgba(108, 192, 186, 0.15);
+            backdrop-filter: blur(16px);
+            padding: 0.4rem 0.9rem;
+            border-radius: 60px;
+            border: 1px solid rgba(108, 192, 186, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s;
+        }
+
+        body.dark .controls {
+            background: #1A1A1A;
+            border-color: #3A3A3A;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .ctrl-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 40px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            color: #27807a;
+            transition: all 0.2s;
+            backdrop-filter: blur(2px);
+        }
+
+        body.dark .ctrl-btn {
+            background: #2C2C2C;
+            color: #D0D0D0;
+            border: 0.5px solid #4A4A4A;
+        }
+
+        .ctrl-btn:hover {
+            background: #e3f7f4;
+            transform: translateY(-1px);
+        }
+
+        body.dark .ctrl-btn:hover {
+            background: #3A3A3A;
+            color: #ffffff;
+        }
+
+        /* ----- LOGIN CARD — FIXED PADDING, NO INTERNAL OVERFLOW ISSUES ----- */
+        .login-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            width: 100%;
+            max-width: 380px;
+            padding: 1.5rem 1.5rem 1.8rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--card-border);
+            transition: background 0.25s, border 0.2s, box-shadow 0.2s;
+            margin: 0 auto;
+            position: relative;
+            z-index: 12;
+        }
+
+        body.dark .login-card {
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.9), 0 4px 18px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Brand area — always centered, always LTR */
+        .brand-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            /* Force LTR for the brand name */
+            direction: ltr;
+            unicode-bidi: normal;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--logo-icon);
+            transition: color 0.2s ease;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .service-subtitle {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            color: var(--text-soft);
+            background: var(--hint-bg);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            margin-top: 0.5rem;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Form heading — always centered, always LTR */
+        .form-heading {
+            text-align: center;
+            margin-bottom: 1rem;
+            /* Force LTR for heading text */
+            direction: ltr;
+            unicode-bidi: normal;
+        }
+
+        .form-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, var(--text-soft), #6CC0BA);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.2rem;
+            /* Force LTR */
+            direction: ltr;
+            unicode-bidi: normal;
+        }
+
+        body.dark .form-heading h2 {
+            background: linear-gradient(135deg, #E0E0E0, #7CC0BA);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .form-heading p {
+            font-size: 0.7rem;
+            color: var(--text-soft);
+            font-weight: 400;
+            /* Force LTR */
+            direction: ltr;
+            unicode-bidi: normal;
+        }
+
+        /* Enhanced form spacing for perfect padding */
+        .field-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--label-color);
+            margin-bottom: 0.35rem;
+            margin-left: 0.2rem;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            border: 1.5px solid var(--input-border);
+            border-radius: 1.2rem;
+            padding: 0.7rem 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+            gap: 0.6rem;
+        }
+
+        .input-group i:first-child {
+            font-size: 0.9rem;
+            color: var(--icon-color);
+            width: 1.4rem;
+            transition: color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .input-group input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            padding: 0;
+            color: var(--text-primary);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-soft);
+            opacity: 0.55;
+            font-weight: 400;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--input-focus-border);
+            box-shadow: 0 0 0 3px rgba(108, 192, 186, 0.2);
+        }
+
+        .input-group:focus-within i:first-child {
+            color: var(--icon-focus);
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 0 1rem 0;
+            font-size: 0.7rem;
+            flex-wrap: wrap;
+            row-gap: 0.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-soft);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .checkbox-label input {
+            accent-color: var(--checkbox-accent);
+            width: 0.9rem;
+            height: 0.9rem;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .options a {
+            color: var(--forgot-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+            font-size: 0.7rem;
+        }
+
+        .options a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            background: linear-gradient(105deg, var(--btn-gradient-start), var(--btn-gradient-end));
+            border: none;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 14px var(--btn-shadow);
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            min-height: 48px;
+        }
+
+        .login-btn:hover {
+            transform: scale(0.98);
+            filter: brightness(0.96);
+            box-shadow: 0 4px 12px var(--btn-shadow);
+        }
+
+        .social-section {
+            margin-top: 0.2rem;
+            text-align: center;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 0.6rem 0 0.7rem;
+            color: var(--text-soft);
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .divider::before {
+            margin-right: 0.8rem;
+        }
+        .divider::after {
+            margin-left: 0.8rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 0.9rem;
+            margin: 0.5rem 0 0.2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            background: var(--social-bg);
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            color: var(--social-icon-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid var(--social-border);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .social-icon:hover {
+            background: var(--card-border);
+            transform: translateY(-2px);
+            border-color: var(--icon-color);
+            color: #3f968f;
+        }
+
+        body.dark .social-icon:hover {
+            background: #2C2C2C;
+            color: #A9E6E0;
+        }
+
+        .signup-wrapper {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            border-top: 1px solid var(--divider-color);
+            padding-top: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .signup-wrapper a {
+            color: var(--link-color);
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 0.3rem;
+        }
+
+        .signup-wrapper a:hover {
+            text-decoration: underline;
+            color: var(--link-hover);
+        }
+
+        .demo-hint {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-size: 0.65rem;
+            margin-top: 0.75rem;
+            color: var(--text-soft);
+            background: var(--hint-bg);
+            padding: 0.35rem 0.7rem;
+            border-radius: 50px;
+            letter-spacing: 0.2px;
+        }
+
+        /* ============================================================
+                   RTL OVERRIDES — flip only form elements, NOT brand/heading
+                   ============================================================ */
+
+        /* 1. Controls panel: move to left side in RTL */
+        body[dir="rtl"] .controls {
+            right: auto;
+            left: 1rem;
+        }
+
+        /* 2. Form labels: align right */
+        body[dir="rtl"] .field-label {
+            text-align: right;
+            margin-right: 0.2rem;
+            margin-left: 0;
+        }
+
+        /* 3. Input groups: reverse icon + input order */
+        body[dir="rtl"] .input-group {
+            flex-direction: row-reverse;
+        }
+
+        /* 4. Options row: keep flex, but text naturally flips */
+        body[dir="rtl"] .options {
+            flex-direction: row;
+        }
+
+        /* 5. Divider: swap margins for RTL */
+        body[dir="rtl"] .divider::before {
+            margin-left: 0.8rem;
+            margin-right: 0;
+        }
+        body[dir="rtl"] .divider::after {
+            margin-right: 0.8rem;
+            margin-left: 0;
+        }
+
+        /* 6. Login button: flip arrow icon */
+        body[dir="rtl"] .login-btn i {
+            transform: scaleX(-1);
+        }
+
+        /* 7. Signup link: adjust margin */
+        body[dir="rtl"] .signup-wrapper a {
+            margin-left: 0;
+            margin-right: 0.3rem;
+        }
+
+        /* 8. Demo hint: already centered, fine */
+
+        /* 9. Social icons: already centered, fine */
+
+        /* 10. Forgot link: already in flex, fine */
+
+        /* 11. Checkbox label: fine as-is */
+
+        /* ============================================================
+                   BRAND & HEADING — FORCED LTR (do not flip)
+                   ============================================================ */
+        .brand-logo,
+        .logo,
+        .logo span,
+        .logo i,
+        .form-heading,
+        .form-heading h2,
+        .form-heading p {
+            direction: ltr !important;
+            unicode-bidi: normal !important;
+            text-align: center !important;
+        }
+
+        /* Override any RTL alignment that might sneak in */
+        body[dir="rtl"] .brand-logo,
+        body[dir="rtl"] .logo,
+        body[dir="rtl"] .logo span,
+        body[dir="rtl"] .logo i,
+        body[dir="rtl"] .form-heading,
+        body[dir="rtl"] .form-heading h2,
+        body[dir="rtl"] .form-heading p {
+            direction: ltr !important;
+            unicode-bidi: normal !important;
+            text-align: center !important;
+        }
+
+        /* RESPONSIVE FIXES — perfect padding on small devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 0.9rem;
+            }
+            .login-card {
+                padding: 1.2rem 1.2rem 1.5rem;
+                max-width: 100%;
+            }
+            .logo {
+                font-size: 1.6rem;
+                gap: 8px;
+            }
+            .logo i {
+                font-size: 1.8rem;
+            }
+            .form-heading h2 {
+                font-size: 1.4rem;
+            }
+            .input-group {
+                padding: 0.6rem 0.9rem;
+                margin-bottom: 0.9rem;
+            }
+            .login-btn {
+                padding: 0.65rem;
+                font-size: 0.85rem;
+                min-height: 44px;
+            }
+            .social-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+            .controls {
+                top: 0.7rem;
+                right: 0.7rem;
+                padding: 0.3rem 0.7rem;
+            }
+            body[dir="rtl"] .controls {
+                left: 0.7rem;
+                right: auto;
+            }
+            .ctrl-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
+        }
+
+        /* very short screens (landscape or small height) */
+        @media (max-height: 640px) and (orientation: landscape) {
+            body {
+                padding: 0.8rem;
+                align-items: flex-start;
+            }
+            .login-card {
+                padding: 1rem 1.2rem 1.2rem;
+                max-width: 420px;
+            }
+            .brand-logo {
+                margin-bottom: 0.2rem;
+            }
+            .form-heading {
+                margin-bottom: 0.4rem;
+            }
+            .form-heading h2 {
+                font-size: 1.25rem;
+            }
+            .input-group {
+                padding: 0.45rem 0.8rem;
+                margin-bottom: 0.65rem;
+            }
+            .options {
+                margin-bottom: 0.6rem;
+            }
+            .login-btn {
+                margin-bottom: 0.5rem;
+                padding: 0.5rem;
+            }
+            .demo-hint {
+                margin-top: 0.4rem;
+            }
+        }
+
+        /* Ensure no overflow on extreme small widths */
+        @media (max-width: 360px) {
+            .login-card {
+                padding: 1rem 1rem 1.3rem;
+            }
+            .options {
+                font-size: 0.65rem;
+            }
+            .checkbox-label span {
+                font-size: 0.65rem;
+            }
+            .ctrl-btn span {
+                display: inline-block;
+            }
+        }
+
+        /* smooth focus & accessibility */
+        input:focus,
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- dummy shape containers removed visually -->
+    <div class="shape-bg"></div>
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+
+    <!-- Floating controls: dark mode + RTL with proper spacing -->
+    <div class="controls">
+        <button class="ctrl-btn" id="darkModeToggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i> <span>Dark</span>
+        </button>
+        <button class="ctrl-btn" id="rtlToggle" aria-label="Switch RTL/LTR layout">
+            <i class="fas fa-exchange-alt"></i> <span>RTL</span>
+        </button>
+    </div>
+
+    <div class="login-card">
+        <!-- Bluewave Brand Logo — always LTR, always centered -->
+        <div class="brand-logo">
+            <div class="logo">
+                <span>Bluewave</span>
+            </div>
+        </div>
+
+        <!-- Form heading — always LTR, always centered -->
+        <div class="form-heading">
+            <h2>welcome back</h2>
+            <p>sign in to manage pool chemistry &amp; cleaning on the go</p>
+        </div>
+
+        <form id="loginForm" action="#" method="post" novalidate>
+            <label for="email" class="field-label">Email address</label>
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="service@bluewave.com" required>
+            </div>
+
+            <label for="password" class="field-label">Password</label>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
+            </div>
+
+            <div class="options">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="rememberCheck">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" id="forgotLink">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">
+                Log in <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <div class="social-section">
+                <div class="divider">or continue with</div>
+                <div class="social-icons">
+                    <div class="social-icon" id="googleIcon" aria-label="Sign in with Google">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="social-icon" id="facebookIcon" aria-label="Sign in with Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-icon" id="appleIcon" aria-label="Sign in with Apple">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="signup-wrapper">
+                💧 New to Bluewave?
+                <a href="signup.html" id="signupLink">Create account</a>
+            </div>
+            <div class="demo-hint">
+                <i class="fas fa-sync-alt"></i> demo mode · any credentials work · your pool stays crystal clear
+            </div>
+        </form>
+    </div>
+
+    <script>
+        (function() {
+            const form = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const rememberCheck = document.getElementById('rememberCheck');
+            const forgotLink = document.getElementById('forgotLink');
+            const signupLink = document.getElementById('signupLink');
+            const googleIcon = document.getElementById('googleIcon');
+            const facebookIcon = document.getElementById('facebookIcon');
+            const appleIcon = document.getElementById('appleIcon');
+
+            function showDemoMessage(msg, isError) {
+                alert(msg);
+            }
+
+            // ----- DARK MODE toggling (clean background black/white) -----
+            const darkToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            function updateDarkUI(isDark) {
+                if (darkToggle) {
+                    darkToggle.innerHTML = isDark ?
+                        '<i class="fas fa-sun"></i> <span>Light</span>' :
+                        '<i class="fas fa-moon"></i> <span>Dark</span>';
+                }
+            }
+            if (localStorage.getItem('bluewaveTheme') === 'dark') {
+                body.classList.add('dark');
+                updateDarkUI(true);
+            } else {
+                body.classList.remove('dark');
+                updateDarkUI(false);
+            }
+            darkToggle.addEventListener('click', function() {
+                const isDark = body.classList.toggle('dark');
+                localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+                updateDarkUI(isDark);
+            });
+
+            // ----- RTL TOGGLE — flips form elements only, brand & heading stay LTR -----
+            const rtlToggle = document.getElementById('rtlToggle');
+            const htmlElem = document.documentElement;
+
+            function setRTL(enable) {
+                if (enable) {
+                    htmlElem.setAttribute('dir', 'rtl');
+                    localStorage.setItem('bluewaveRTL', 'true');
+                    if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-arrow-left"></i> <span>LTR</span>';
+                } else {
+                    htmlElem.setAttribute('dir', 'ltr');
+                    localStorage.setItem('bluewaveRTL', 'false');
+                    if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
+                }
+            }
+            const savedRTL = localStorage.getItem('bluewaveRTL');
+            setRTL(savedRTL === 'true');
+            rtlToggle.addEventListener('click', function() {
+                const isRTL = htmlElem.getAttribute('dir') === 'rtl';
+                setRTL(!isRTL);
+            });
+
+            function isValidEmail(email) {
+                var atIndex = email.indexOf('@');
+                if (atIndex === -1) return false;
+                var dotAfterAt = email.indexOf('.', atIndex);
+                return dotAfterAt > atIndex + 1 && email.length - dotAfterAt > 1;
+            }
+
+            // Submit handler — demo login for Bluewave pool service
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = emailInput.value.trim();
+                var password = passwordInput.value.trim();
+
+                if (!email) {
+                    showDemoMessage("🔔 Please enter your email address to access Bluewave mobile pool service.", true);
+                    emailInput.focus();
+                    return;
+                }
+                if (!isValidEmail(email)) {
+                    showDemoMessage("📧 Enter a valid email address (e.g., pool@bluewave.com).", true);
+                    emailInput.focus();
+                    return;
+                }
+                if (!password) {
+                    showDemoMessage("🔒 Password required — secure your pool management dashboard.", true);
+                    passwordInput.focus();
+                    return;
+                }
+
+                var rememberMsg = rememberCheck.checked ? " ✓ Remember me enabled" : "";
+                showDemoMessage("🏊‍♂️📱 You're now signed in to Bluewave Mobile!" + rememberMsg +
+                    "\n\n✨ (demo mode · pool chemistry & cleaning dashboard)\nWelcome, " + email +
+                    "\nYour water is balanced and crystal clear! ✨");
+                emailInput.value = '';
+                passwordInput.value = '';
+                rememberCheck.checked = false;
+                emailInput.focus();
+            });
+
+            forgotLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showDemoMessage("🔐 A password reset link for your Bluewave pool account will be sent to your email. (demo)");
+            });
+
+            googleIcon.addEventListener('click', function() {
+                showDemoMessage(
+                    "🌊 Google Sign-In demo · Bluewave mobile pool service syncs your schedules seamlessly.");
+            });
+            facebookIcon.addEventListener('click', function() {
+                showDemoMessage(
+                    "📱 Facebook login demo · keep your pool logs and balancing history connected across devices.");
+            });
+            appleIcon.addEventListener('click', function() {
+                showDemoMessage(
+                    "🍏 Apple ID demo · privacy-first access to Bluewave’s mobile-first pool care ecosystem.");
+            });
+
+            emailInput.focus();
+        })();
+    </script>
+</body>
+</html>

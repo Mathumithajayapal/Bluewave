@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Bluewave · Join the Wave | Pool Service Signup</title>
+  <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">  
+
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ----- LIGHT MODE (crisp white background) ----- */
+    :root {
+      --bg-color: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --card-border: rgba(108, 192, 186, 0.35);
+      --text-primary: #1b3b3a;
+      --text-soft: #2b6b66;
+      --label-color: #2b6b66;
+      --input-border: #d1ece9;
+      --input-focus-border: #6CC0BA;
+      --icon-color: #7cc9c2;
+      --icon-focus: #6CC0BA;
+      --btn-gradient-start: #6CC0BA;
+      --btn-gradient-end: #51aca5;
+      --btn-shadow: rgba(68, 148, 140, 0.25);
+      --divider-color: #cee9e6;
+      --social-bg: #f2fcfb;
+      --social-border: #c6e4e1;
+      --social-icon-color: #6CC0BA;
+      --hint-bg: rgba(108, 192, 186, 0.12);
+      --link-color: #6CC0BA;
+      --link-hover: #479f99;
+      --checkbox-accent: #6CC0BA;
+      --logo-icon: #6CC0BA;
+      --logo-gradient-start: #6CC0BA;
+      --logo-gradient-end: #3d958e;
+    }
+
+    /* ----- DARK MODE — absolute black background + deep charcoal card ----- */
+    body.dark {
+      --bg-color: #000000;
+      --card-bg: #121212;
+      --card-border: #2c2c2c;
+      --text-primary: #F0F0F0;
+      --text-soft: #B0B0B0;
+      --label-color: #C5C5C5;
+      --input-border: #2E2E2E;
+      --input-focus-border: #7CC0BA;
+      --icon-color: #7BAAA5;
+      --icon-focus: #9ADED7;
+      --btn-gradient-start: #2D6A66;
+      --btn-gradient-end: #479f99;
+      --btn-shadow: rgba(0, 0, 0, 0.8);
+      --divider-color: #2A2A2A;
+      --social-bg: #1F1F1F;
+      --social-border: #3A3A3A;
+      --social-icon-color: #7CC0BA;
+      --hint-bg: rgba(60, 60, 60, 0.85);
+      --link-color: #7CC0BA;
+      --link-hover: #A9E6E0;
+      --checkbox-accent: #7CC0BA;
+      --logo-icon: #7CC0BA;
+      --logo-gradient-start: #7CC0BA;
+      --logo-gradient-end: #479f99;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-color);
+      font-family: 'Inter', sans-serif;
+      transition: background 0.28s ease, color 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.25rem;
+      padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+      position: relative;
+    }
+
+    /* Remove all decorative shapes */
+    .shape-bg, .blob-1, .blob-2 {
+      display: none !important;
+    }
+
+    /* ----- FIXED CONTROLS PANEL (exactly like signin page) ----- */
+    .controls {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 200;
+      display: flex;
+      gap: 0.6rem;
+      background: rgba(108, 192, 186, 0.15);
+      backdrop-filter: blur(16px);
+      padding: 0.4rem 0.9rem;
+      border-radius: 60px;
+      border: 1px solid rgba(108, 192, 186, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s;
+    }
+
+    body.dark .controls {
+      background: #1A1A1A;
+      border-color: #3A3A3A;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      color: #27807a;
+      transition: all 0.2s;
+      backdrop-filter: blur(2px);
+    }
+
+    body.dark .ctrl-btn {
+      background: #2C2C2C;
+      color: #D0D0D0;
+      border: 0.5px solid #4A4A4A;
+    }
+
+    .ctrl-btn:hover {
+      background: #e3f7f4;
+      transform: translateY(-1px);
+    }
+
+    body.dark .ctrl-btn:hover {
+      background: #3A3A3A;
+      color: #ffffff;
+    }
+
+    /* ----- SIGNUP CARD — reduced size: compact, tighter padding, narrower max-width ----- */
+    .login-card {
+      background-color: var(--card-bg);
+      border-radius: 1.75rem;
+      width: 100%;
+      max-width: 340px;        /* DECREASED: from 380px to 340px for more compact feel */
+      padding: 1.1rem 1.2rem 1.4rem;  /* reduced vertical/horizontal padding */
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--card-border);
+      transition: background 0.25s, border 0.2s, box-shadow 0.2s;
+      margin: 0 auto;
+      position: relative;
+      z-index: 12;
+    }
+
+    body.dark .login-card {
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.9), 0 4px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Brand area with tighter margins */
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.5rem;      /* slightly smaller */
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .logo i {
+      font-size: 1.7rem;
+      color: var(--logo-icon);
+      transition: color 0.2s ease;
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .service-subtitle {
+      text-align: center;
+      font-size: 0.65rem;      /* smaller to match card density */
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: var(--text-soft);
+      background: var(--hint-bg);
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      margin-top: 0.4rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .form-heading {
+      text-align: center;
+      margin-bottom: 0.7rem;
+    }
+
+    .form-heading h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 1.35rem;      /* decreased from 1.6rem */
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, var(--text-soft), #6CC0BA);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.1rem;
+    }
+
+    body.dark .form-heading h2 {
+      background: linear-gradient(135deg, #E0E0E0, #7CC0BA);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .form-heading p {
+      font-size: 0.65rem;      /* reduced */
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
+    /* Form field styling identical to signin but more compact */
+    .field-label {
+      display: block;
+      font-size: 0.65rem;      /* smaller */
+      font-weight: 600;
+      color: var(--label-color);
+      margin-bottom: 0.25rem;
+      margin-left: 0.2rem;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border: 1.5px solid var(--input-border);
+      border-radius: 1.2rem;
+      padding: 0.5rem 0.9rem;   /* reduced vertical padding from 0.7rem to 0.5rem */
+      margin-bottom: 0.85rem;    /* reduced gap */
+      transition: all 0.2s ease;
+      gap: 0.5rem;
+    }
+
+    .input-group i:first-child {
+      font-size: 0.85rem;
+      color: var(--icon-color);
+      width: 1.2rem;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .input-group input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      padding: 0;
+      color: var(--text-primary);
+    }
+
+    .input-group input::placeholder {
+      color: var(--text-soft);
+      opacity: 0.55;
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+
+    .input-group:focus-within {
+      border-color: var(--input-focus-border);
+      box-shadow: 0 0 0 3px rgba(108, 192, 186, 0.2);
+    }
+
+    .input-group:focus-within i:first-child {
+      color: var(--icon-focus);
+    }
+
+    /* Terms & conditions row (like remember me) — compact */
+    .terms-option {
+      display: flex;
+      align-items: center;
+      margin: 0 0 0.7rem 0;
+      font-size: 0.65rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .terms-option label {
+      color: var(--text-soft);
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .terms-option input {
+      accent-color: var(--checkbox-accent);
+      width: 0.85rem;
+      height: 0.85rem;
+      margin: 0;
+      cursor: pointer;
+    }
+    .terms-option a {
+      color: var(--link-color);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.65rem;
+      transition: color 0.2s;
+    }
+    .terms-option a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    .signup-btn {
+      background: linear-gradient(105deg, var(--btn-gradient-start), var(--btn-gradient-end));
+      border: none;
+      width: 100%;
+      padding: 0.6rem;       /* reduced */
+      border-radius: 2.5rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: white;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 6px 14px var(--btn-shadow);
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 42px;
+    }
+
+    .signup-btn:hover {
+      transform: scale(0.98);
+      filter: brightness(0.96);
+      box-shadow: 0 4px 12px var(--btn-shadow);
+    }
+
+    .social-section {
+      margin-top: 0.1rem;
+      text-align: center;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 0.4rem 0 0.55rem;
+      color: var(--text-soft);
+      font-size: 0.6rem;
+      font-weight: 500;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--divider-color);
+    }
+    .divider::before { margin-right: 0.7rem; }
+    .divider::after { margin-left: 0.7rem; }
+    body[dir="rtl"] .divider::before { margin-left: 0.7rem; margin-right: 0; }
+    body[dir="rtl"] .divider::after { margin-right: 0.7rem; margin-left: 0; }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 0.3rem 0 0.1rem;
+      flex-wrap: wrap;
+    }
+    .social-icon {
+      background: var(--social-bg);
+      width: 36px;           /* slightly smaller */
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      color: var(--social-icon-color);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid var(--social-border);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+    .social-icon:hover {
+      background: var(--card-border);
+      transform: translateY(-2px);
+      border-color: var(--icon-color);
+      color: #3f968f;
+    }
+    body.dark .social-icon:hover {
+      background: #2C2C2C;
+      color: #A9E6E0;
+    }
+
+    .signin-wrapper {
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-soft);
+      border-top: 1px solid var(--divider-color);
+      padding-top: 0.7rem;
+      margin-top: 0.6rem;
+    }
+    .signin-wrapper a {
+      color: var(--link-color);
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 0.2rem;
+    }
+    .signin-wrapper a:hover {
+      text-decoration: underline;
+      color: var(--link-hover);
+    }
+    body[dir="rtl"] .signin-wrapper a {
+      margin-left: 0;
+      margin-right: 0.2rem;
+    }
+
+    .demo-hint {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 0.6rem;
+      margin-top: 0.65rem;
+      color: var(--text-soft);
+      background: var(--hint-bg);
+      padding: 0.25rem 0.5rem;
+      border-radius: 50px;
+      letter-spacing: 0.2px;
+    }
+
+    /* RTL adjustments exactly like signin page */
+    body[dir="rtl"] .input-group {
+      flex-direction: row;
+    }
+    body[dir="rtl"] .signup-btn i {
+      transform: scaleX(-1);
+    }
+    body[dir="rtl"] .controls {
+      right: auto;
+      left: 1rem;
+    }
+    body[dir="rtl"] .terms-option label {
+      flex-direction: row;
+    }
+
+    /* RESPONSIVE FIXES — keep card compact */
+    @media (max-width: 480px) {
+      body {
+        padding: 0.8rem;
+      }
+      .login-card {
+        padding: 0.9rem 1rem 1.2rem;
+        max-width: 100%;
+      }
+      .logo {
+        font-size: 1.35rem;
+        gap: 6px;
+      }
+      .logo i {
+        font-size: 1.5rem;
+      }
+      .form-heading h2 {
+        font-size: 1.25rem;
+      }
+      .input-group {
+        padding: 0.45rem 0.8rem;
+        margin-bottom: 0.7rem;
+      }
+      .signup-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        min-height: 40px;
+      }
+      .social-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
+      }
+      .controls {
+        top: 0.7rem;
+        right: 0.7rem;
+        padding: 0.3rem 0.7rem;
+      }
+      body[dir="rtl"] .controls {
+        left: 0.7rem;
+        right: auto;
+      }
+      .ctrl-btn {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+      }
+      .terms-option {
+        font-size: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+    }
+
+    /* landscape & extra small width - maintain density */
+    @media (max-height: 640px) and (orientation: landscape) {
+      body {
+        padding: 0.6rem;
+        align-items: flex-start;
+      }
+      .login-card {
+        padding: 0.8rem 1rem 1rem;
+        max-width: 360px;
+      }
+      .brand-logo {
+        margin-bottom: 0.1rem;
+      }
+      .form-heading {
+        margin-bottom: 0.3rem;
+      }
+      .form-heading h2 {
+        font-size: 1.2rem;
+      }
+      .input-group {
+        padding: 0.4rem 0.75rem;
+        margin-bottom: 0.6rem;
+      }
+      .terms-option {
+        margin-bottom: 0.5rem;
+      }
+      .signup-btn {
+        margin-bottom: 0.45rem;
+        padding: 0.45rem;
+      }
+      .demo-hint {
+        margin-top: 0.35rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .login-card {
+        padding: 0.8rem 0.9rem 1rem;
+      }
+      .terms-option label span {
+        font-size: 0.6rem;
+      }
+      .ctrl-btn span {
+        display: inline-block;
+      }
+    }
+
+    input:focus, button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="shape-bg"></div>
+  <div class="blob-1"></div>
+  <div class="blob-2"></div>
+
+  <!-- Floating controls: dark mode + RTL -->
+  <div class="controls">
+    <button class="ctrl-btn" id="darkModeToggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-moon"></i> <span>Dark</span>
+    </button>
+    <button class="ctrl-btn" id="rtlToggle" aria-label="Switch RTL/LTR layout">
+      <i class="fas fa-exchange-alt"></i> <span>RTL</span>
+    </button>
+  </div>
+
+  <div class="login-card">
+    <!-- Bluewave Brand Logo with pool identity -->
+    <div class="brand-logo">
+      <div class="logo">
+        <span>Bluewave</span>
+      </div>
+      
+    </div>
+
+    <div class="form-heading">
+      <h2>join the wave</h2>
+      <p>create an account to manage pool chemistry & cleaning on the go</p>
+    </div>
+
+    <form id="signupForm" action="#" method="post" novalidate>
+      <!-- Full name -->
+      <label for="fullname" class="field-label">Full name</label>
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="fullname" name="fullname" autocomplete="name" placeholder="Alex Rivera" required>
+      </div>
+
+      <!-- Email -->
+      <label for="email" class="field-label">Email address</label>
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="service@bluewave.com" required>
+      </div>
+
+      <!-- Password -->
+      <label for="password" class="field-label">Password</label>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" name="password" autocomplete="new-password" placeholder="••••••••" required>
+      </div>
+
+      <!-- Confirm Password -->
+      <label for="confirmPassword" class="field-label">Confirm password</label>
+      <div class="input-group">
+        <i class="fas fa-check-circle"></i>
+        <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="off" placeholder="confirm password" required>
+      </div>
+
+      <!-- Terms and conditions checkbox -->
+      <div class="terms-option">
+        <label>
+          <input type="checkbox" id="termsCheck" required>
+          <span>I agree to the <a href="#" id="termsLink">Terms of Service</a> and <a href="#" id="privacyLink">Privacy Policy</a></span>
+        </label>
+      </div>
+
+      <button type="submit" class="signup-btn">
+        Create account <i class="fas fa-arrow-right"></i>
+      </button>
+
+      <div class="social-section">
+        <div class="divider">or sign up with</div>
+        <div class="social-icons">
+          <div class="social-icon" id="googleSignup" aria-label="Sign up with Google">
+            <i class="fab fa-google"></i>
+          </div>
+          <div class="social-icon" id="facebookSignup" aria-label="Sign up with Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </div>
+          <div class="social-icon" id="appleSignup" aria-label="Sign up with Apple">
+            <i class="fab fa-apple"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="signin-wrapper">
+        💧 Already have a Bluewave account?
+        <a href="signin.html" id="signinLink">Sign in</a>
+      </div>
+      <div class="demo-hint">
+        <i class="fas fa-sync-alt"></i> demo mode · any credentials work · your pool stays crystal clear
+      </div>
+    </form>
+  </div>
+
+  <script>
+    (function() {
+      const form = document.getElementById('signupForm');
+      const fullnameInput = document.getElementById('fullname');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const confirmInput = document.getElementById('confirmPassword');
+      const termsCheck = document.getElementById('termsCheck');
+      const signinLink = document.getElementById('signinLink');
+      const googleBtn = document.getElementById('googleSignup');
+      const facebookBtn = document.getElementById('facebookSignup');
+      const appleBtn = document.getElementById('appleSignup');
+      const termsLink = document.getElementById('termsLink');
+      const privacyLink = document.getElementById('privacyLink');
+
+      function showDemoMessage(msg, isError = false) {
+        alert(msg);
+      }
+
+      function isValidEmail(email) {
+        const atIndex = email.indexOf('@');
+        if (atIndex === -1) return false;
+        const dotAfterAt = email.indexOf('.', atIndex);
+        return dotAfterAt > atIndex + 1 && email.length - dotAfterAt > 1;
+      }
+
+      // ----- DARK MODE toggling -----
+      const darkToggle = document.getElementById('darkModeToggle');
+      const body = document.body;
+      function updateDarkUI(isDark) {
+        if (darkToggle) {
+          darkToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> <span>Light</span>' : '<i class="fas fa-moon"></i> <span>Dark</span>';
+        }
+      }
+      if (localStorage.getItem('bluewaveTheme') === 'dark') {
+        body.classList.add('dark');
+        updateDarkUI(true);
+      } else {
+        body.classList.remove('dark');
+        updateDarkUI(false);
+      }
+      darkToggle.addEventListener('click', () => {
+        const isDark = body.classList.toggle('dark');
+        localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+        updateDarkUI(isDark);
+      });
+
+      // ----- RTL TOGGLE -----
+      const rtlToggle = document.getElementById('rtlToggle');
+      const htmlElem = document.documentElement;
+      function setRTL(enable) {
+        if (enable) {
+          htmlElem.setAttribute('dir', 'rtl');
+          localStorage.setItem('bluewaveRTL', 'true');
+          if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-arrow-left"></i> <span>LTR</span>';
+        } else {
+          htmlElem.setAttribute('dir', 'ltr');
+          localStorage.setItem('bluewaveRTL', 'false');
+          if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
+        }
+      }
+      const savedRTL = localStorage.getItem('bluewaveRTL');
+      setRTL(savedRTL === 'true');
+      rtlToggle.addEventListener('click', () => {
+        const isRTL = htmlElem.getAttribute('dir') === 'rtl';
+        setRTL(!isRTL);
+      });
+
+      // Signup handler — validation & demo success
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const fullname = fullnameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirm = confirmInput.value.trim();
+
+        if (!fullname) {
+          showDemoMessage("🔔 Please enter your full name to join Bluewave mobile pool service.", true);
+          fullnameInput.focus();
+          return;
+        }
+        if (!email) {
+          showDemoMessage("📧 Email address required for pool management dashboard.", true);
+          emailInput.focus();
+          return;
+        }
+        if (!isValidEmail(email)) {
+          showDemoMessage("📧 Enter a valid email address (e.g., pool@bluewave.com).", true);
+          emailInput.focus();
+          return;
+        }
+        if (!password) {
+          showDemoMessage("🔒 Create a secure password to manage chemical balancing & schedules.", true);
+          passwordInput.focus();
+          return;
+        }
+        if (password.length < 4) {
+          showDemoMessage("Password must be at least 4 characters (demo mode, but keep safe).", true);
+          passwordInput.focus();
+          return;
+        }
+        if (password !== confirm) {
+          showDemoMessage("⚠️ Passwords do not match. Please confirm your password.", true);
+          confirmInput.focus();
+          return;
+        }
+        if (!termsCheck.checked) {
+          showDemoMessage("📜 Please agree to the Terms of Service & Privacy Policy to continue.", true);
+          return;
+        }
+
+        const firstName = fullname.split(' ')[0];
+        showDemoMessage(`🏊‍♂️✨ Welcome to Bluewave, ${firstName}! ✨\n\n📱 Your mobile pool pro account has been created (demo mode).\n🔗 Email: ${email}\n💧 Start managing chemistry, cleaning schedules & service logs.\nYour water is perfectly balanced — let's dive in!`);
+        
+        // Reset form fields for clean demo experience
+        form.reset();
+        fullnameInput.focus();
+      });
+
+      // Social login demo interactions
+      googleBtn.addEventListener('click', () => {
+        showDemoMessage("🌊 Google Sign-Up demo · Sync your pool cleaning schedules and chemical tracking with Bluewave.");
+      });
+      facebookBtn.addEventListener('click', () => {
+        showDemoMessage("📱 Facebook Sign-Up demo · Connect with your pool maintenance team and access logs instantly.");
+      });
+      appleBtn.addEventListener('click', () => {
+        showDemoMessage("🍏 Apple ID Sign-Up demo · Privacy-first access to Bluewave's mobile pool ecosystem.");
+      });
+
+      // Terms & privacy demo links
+      termsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showDemoMessage("📄 Bluewave Terms of Service (demo): We keep your pool data safe, crystal clear service, fair use policy.");
+      });
+      privacyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showDemoMessage("🔒 Privacy Policy (demo): Your pool chemistry data and contact info are never shared. Bluewave respects your privacy.");
+      });
+      fullnameInput.focus();
+    })();
+  </script>
+</body>
+</html>

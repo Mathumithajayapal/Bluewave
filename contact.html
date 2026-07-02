@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bluewave | Get in Touch — Professional Pool Care</title>
+  <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">  
+
+  
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Leaflet CSS + JS (lightweight interactive map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ----- LIGHT MODE (Aquatic / Teal theme) ----- */
+    :root {
+      --bg-body: #ffffff;
+      --text-body: #1b3b3a;
+      --header-bg: rgba(255, 255, 255, 0.96);
+      --header-shadow: 0 4px 12px rgba(0, 32, 30, 0.08);
+      --border-light: #d9f0ef;
+      --card-bg: #ffffff;
+      --footer-border: #cee9e6;
+      --text-muted: #2b6b66;
+      --pool-primary: #6CC0BA;
+      --pool-dark: #3d958e;
+      --pool-accent: #8fdad4;
+      --pool-light-bg: #e6f7f5;
+      --dropdown-bg: #ffffff;
+      --dropdown-border: #d1ece9;
+      --hover-bg: rgba(108, 192, 186, 0.12);
+      --btn-gradient-start: #6CC0BA;
+      --btn-gradient-end: #51aca5;
+      --logo-gradient-start: #6CC0BA;
+      --logo-gradient-end: #3d958e;
+      --hero-gradient-start: #1b3b3a;
+      --hero-gradient-end: #6CC0BA;
+      --contact-card-bg: #ffffff;
+      --input-bg: #ffffff;
+      --input-border: #d9f0ef;
+      --shadow-sm: 0 8px 20px rgba(0, 32, 30, 0.05);
+    }
+
+    /* ----- DARK MODE: Black background + Grey cards (modern sleek) ----- */
+    .dark {
+      --bg-body: #000000;
+      --text-body: #f0f3f8;
+      --header-bg: rgba(0, 0, 0, 0.94);
+      --header-shadow: 0 4px 14px rgba(0, 0, 0, 0.8);
+      --border-light: #2c2f36;
+      --card-bg: #1e1f24;
+      --footer-border: #1f2228;
+      --text-muted: #b0c4c2;
+      --pool-primary: #7fd4ce;
+      --pool-dark: #5db9b2;
+      --pool-accent: #a2e3dd;
+      --pool-light-bg: #0a0c10;
+      --dropdown-bg: #1e1f24;
+      --dropdown-border: #2e313a;
+      --hover-bg: rgba(108, 192, 186, 0.18);
+      --btn-gradient-start: #5cb0aa;
+      --btn-gradient-end: #7fd4ce;
+      --logo-gradient-start: #7fd4ce;
+      --logo-gradient-end: #5db9b2;
+      --hero-gradient-start: #eef2f8;
+      --hero-gradient-end: #7fd4ce;
+      --contact-card-bg: #16181f;
+      --input-bg: #1e1f24;
+      --input-border: #2e313a;
+      --shadow-sm: 0 15px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Header & Navbar */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--header-bg);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--header-shadow);
+      transition: background-color 0.2s, box-shadow 0.2s;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      color: var(--pool-primary);
+      transition: transform 0.2s ease, color 0.2s;
+    }
+
+    .logo:hover .logo-icon {
+      transform: scale(0.98);
+      color: var(--pool-dark);
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      transition: background 0.2s;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--text-body);
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      background-color: var(--hover-bg);
+      color: var(--pool-primary);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding-top: 0.5rem;
+      display: none;
+      min-width: 220px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-inner {
+      background-color: var(--dropdown-bg);
+      border: 1px solid var(--dropdown-border);
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      padding: 0.75rem 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .dropdown-inner a {
+      display: block;
+      padding: 0.6rem 1.5rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text-body);
+      transition: all 0.2s;
+    }
+
+    .dropdown-inner a:hover {
+      background-color: var(--pool-primary);
+      color: #0a0c10;
+      padding-left: 2rem;
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .icon-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: var(--text-body);
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: var(--hover-bg);
+      color: var(--pool-primary);
+    }
+
+    .rtl-btn {
+      padding: 0 1rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      background: transparent;
+      border: none;
+      color: var(--text-body);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .rtl-btn:hover {
+      background-color: var(--hover-bg);
+      color: var(--pool-primary);
+    }
+
+    .login-btn-header {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      border: 2px solid var(--pool-primary);
+      color: var(--pool-primary);
+      background: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+    }
+
+    .login-btn-header:hover {
+      background-color: var(--pool-primary);
+      color: #000000;
+      box-shadow: 0 4px 10px rgba(108, 192, 186, 0.3);
+    }
+
+    .hamburger {
+      display: none;
+      width: 2.5rem;
+      height: 2.5rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5rem;
+      border: 2px solid var(--border-light);
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-body);
+    }
+
+    /* Mobile overlay & menu */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    .mobile-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav-menu {
+      position: fixed;
+      top: 0;
+      width: 80%;
+      max-width: 320px;
+      height: 100%;
+      background-color: var(--card-bg);
+      z-index: 999;
+      box-shadow: -8px 0 25px rgba(0, 0, 0, 0.5);
+      border-left: 4px solid var(--pool-primary);
+      overflow-y: auto;
+      padding: 90px 1.5rem 2rem;
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .dark .mobile-nav-menu {
+      background-color: #14161c;
+      border-left-color: var(--pool-accent);
+    }
+
+    html:not([dir="rtl"]) .mobile-nav-menu {
+      right: 0;
+      transform: translateX(100%);
+    }
+
+    html[dir="rtl"] .mobile-nav-menu {
+      left: 0;
+      transform: translateX(-100%);
+    }
+
+    .mobile-nav-menu.open {
+      transform: translateX(0) !important;
+    }
+
+    .mobile-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      border: 2px solid var(--border-light);
+      background: var(--card-bg);
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-body);
+      margin-bottom: 0.75rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .mobile-link i {
+      width: 1.5rem;
+      color: var(--pool-primary);
+    }
+
+    /* ========= HERO BANNER WITH BACKGROUND IMAGE (FIXED) ========= */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      min-height: 480px;
+      background-image: url('image/pool (2).jpg');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      isolation: isolate;
+    }
+    
+    /* Dark overlay for better text contrast */
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 30, 35, 0.55) 0%, rgba(0, 0, 0, 0.4) 100%);
+      z-index: 1;
+    }
+    
+    /* For dark mode a deeper overlay */
+    .dark .hero-banner::before {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 20, 25, 0.6) 100%);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 2rem 1.5rem;
+    }
+    
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.8s ease-out;
+    }
+    
+    .hero-sub {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeUp 0.8s ease-out 0.1s backwards;
+    }
+    
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Optional: Responsive hero adjustments */
+    @media (max-width: 768px) {
+      .hero-banner {
+        min-height: 380px;
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .hero-sub {
+        font-size: 1rem;
+      }
+    }
+
+    /* ========= CONTACT PAGE SPECIFIC STYLES ========= */
+    .contact-hero {
+      background: radial-gradient(circle at 20% 40%, rgba(108,192,186,0.08), transparent);
+      padding: 3rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--hero-gradient-start), var(--hero-gradient-end));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .contact-sub {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      max-width: 1280px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+    }
+
+    /* Info cards column */
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .contact-info-card {
+      background: var(--contact-card-bg);
+      border-radius: 2rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid var(--border-light);
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pool-primary);
+    }
+
+    .info-icon {
+      width: 54px;
+      height: 54px;
+      background: var(--hover-bg);
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .info-icon i {
+      font-size: 28px;
+      color: var(--pool-primary);
+    }
+
+    .contact-info-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info-card p, .contact-info-card a {
+      color: var(--text-muted);
+      line-height: 1.5;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-info-card a:hover {
+      color: var(--pool-primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 42px;
+      background: var(--hover-bg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+
+    .social-circle:hover {
+      background: var(--pool-primary);
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* Form column */
+    .form-card {
+      background: var(--contact-card-bg);
+      border-radius: 2rem;
+      padding: 2rem 2rem 2.5rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-card .form-desc {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      border-left: 3px solid var(--pool-primary);
+      padding-left: 1rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .input-group input, .input-group select, .input-group textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      border-radius: 1.2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-body);
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+      border-color: var(--pool-primary);
+      box-shadow: 0 0 0 3px rgba(108, 192, 186, 0.2);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(105deg, var(--btn-gradient-start), var(--btn-gradient-end));
+      border: none;
+      padding: 1rem;
+      border-radius: 3rem;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #000000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 5px 14px rgba(108, 192, 186, 0.3);
+      margin-top: 0.8rem;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      filter: brightness(0.96);
+      box-shadow: 0 8px 20px rgba(108, 192, 186, 0.5);
+    }
+
+    /* ========= FULL WIDTH MAP SECTION (before footer, edge to edge) ========= */
+    .map-fullwidth {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .map-card-full {
+      background: var(--contact-card-bg);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+      width: 100%;
+      border-radius: 0;
+    }
+
+    .map-header {
+      padding: 1.2rem 1.8rem 0.8rem;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .map-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--pool-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .map-badge {
+      background: var(--hover-bg);
+      padding: 0.3rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--pool-primary);
+    }
+
+    #bluewaveMap {
+      height: 420px;
+      width: 100%;
+      z-index: 1;
+      background-color: #1b3b3a;
+    }
+
+    .map-footer-info {
+      padding: 0.9rem 1.5rem;
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--bg-body);
+      border-top: 1px solid var(--footer-border);
+      padding: 3rem 1.5rem 2rem;
+      margin-top: 0;
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--pool-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid var(--pool-primary);
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--pool-primary);
+      transform: translateX(4px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(108, 192, 186, 0.25);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1280px) {
+      .desktop-nav {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .action-group .icon-btn, .action-group .rtl-btn, .action-group .login-btn-header {
+        display: none;
+      }
+    }
+
+    @media (min-width: 1281px) {
+      .mobile-nav-menu, .mobile-overlay {
+        display: none;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .contact-title {
+        font-size: 2rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      #bluewaveMap {
+        height: 300px;
+      }
+      .map-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    .footer-col:first-child .logo {
+  display: inline-flex;
+  margin-bottom: 1.25rem;
+}
+
+.footer-col:first-child p {
+  margin-top: 0;
+  padding-top: 0.5rem;
+  line-height: 1.8;
+  max-width: 280px;
+}
+/* Mobile Active Link */
+.mobile-link.active {
+  background-color: var(--pool-primary);
+  color: #000;
+  border-color: var(--pool-primary);
+}
+
+.mobile-link.active i {
+  color: #000;
+}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-container">
+    <a href="#" class="logo">
+      <span class="logo-text">Bluewave</span>
+    </a>
+    <div class="desktop-nav">
+      <div class="dropdown">
+        <a href="#" class="nav-link">Home <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-inner">
+            <a href="index.html">Home1</a>
+            <a href="home2.html">Home2</a>
+          </div>
+        </div>
+      </div>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="service.html" class="nav-link">Service</a>
+      <a href="Blog.html" class="nav-link">Blog</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="schedule.html" class="nav-link">Schedule</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="contact.html" class="nav-link active-page" style="background: var(--pool-primary); color:#ffffff ;">Contact</a>
+    </div>
+    <div class="action-group">
+      <button id="themeToggle" class="icon-btn" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
+      <button id="rtlToggle" class="rtl-btn"><span id="rtlButtonText">RTL</span></button>
+      <a href="signin.html" class="login-btn-header">Log in</a>
+      <button id="hamburger" class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Overlay & Menu -->
+<div id="mobileOverlay" class="mobile-overlay"></div>
+<div id="mobileNavMenu" class="mobile-nav-menu">
+  <ul style="list-style: none;">
+    <li><a href="index.html" class="mobile-link"> Home1</a></li>
+    <li><a href="home2.html" class="mobile-link"> Home2</a></li>
+    <li><a href="about.html" class="mobile-link"> About</a></li>
+    <li><a href="service.html" class="mobile-link"> service</a></li>
+    <li><a href="Blog.html" class="mobile-link"> Blog</a></li>
+    <li><a href="pricing.html" class="mobile-link"> Pricing</a></li>
+    <li><a href="schedule.html" class="mobile-link"> Schedule</a></li>
+    <li><a href="faq.html" class="mobile-link"> FAQ</a></li>
+    <li><a href="contact.html" class="mobile-link active"> Contact</a></li>
+    <li><a href="signin.html" class="mobile-link"> Login</a></li>
+  </ul>
+  <div style="margin-top: 2rem; border-top: 2px solid var(--border-light); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+    <button id="mobileThemeToggle" class="mobile-link" style="justify-content: center;"><i class="fas fa-moon"></i> Dark Mode</button>
+    <button id="mobileRtlToggle" class="mobile-link" style="justify-content: center;"><span id="mobileRtlButtonText">RTL Mode</span></button>
+  </div>
+</div>
+
+<!-- ===== NEW HERO BANNER WITH CRYSTAL-CLEAR POOL IMAGE ===== -->
+<section class="hero-banner">
+  <div class="hero-content">
+    <h1 class="hero-title">Crystal Clear Waters Start Here</h1>
+    <p class="hero-sub">Professional pool care & smart chemistry — Dive into excellence with Bluewave.</p>
+  </div>
+</section>
+
+<div class="contact-grid">
+  <!-- Left: Contact info cards -->
+  <div class="info-cards">
+    <div class="contact-info-card">
+      <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <h3>Visit Us</h3>
+      <p>1560 Bluewave Avenue, Suite 200<br>Miami, FL 33132, United States</p>
+    </div>
+    <div class="contact-info-card">
+      <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+      <h3>Call & Support</h3>
+      <p><a href="tel:+18005551234">+1 (800) 555-BLUE</a><br>Mon–Fri: 8am – 7pm EST</p>
+    </div>
+    <div class="contact-info-card">
+      <div class="info-icon"><i class="fas fa-envelope"></i></div>
+      <h3>Email Us</h3>
+      <p><a href="mailto:hello@bluewavepool.com">hello@bluewavepool.com</a><br>Response within 24h</p>
+    </div>
+    <div class="contact-info-card">
+      <div class="info-icon"><i class="fas fa-share-alt"></i></div>
+      <h3>Digital Community</h3>
+      <div class="social-links">
+        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Contact Form -->
+  <div class="form-card">
+    <h2>Send a message</h2>
+    <div class="form-desc">We'd love to hear from you. Fill out the form and our pool experts will reply shortly.</div>
+    <form id="contactForm" action="#" method="post">
+      <div class="form-row">
+        <div class="input-group">
+          <label>First name *</label>
+          <input type="text" id="firstName" placeholder="John" required>
+        </div>
+        <div class="input-group">
+          <label>Last name *</label>
+          <input type="text" id="lastName" placeholder="Doe" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label>Email address *</label>
+        <input type="email" id="email" placeholder="john@example.com" required>
+      </div>
+      <div class="input-group">
+        <label>Phone number</label>
+        <input type="tel" id="phone" placeholder="(305) 555-1234">
+      </div>
+      
+      <div class="input-group">
+        <label>Service interest (or specify your need)</label>
+        <input type="text" id="serviceInterest" placeholder="e.g., Full pool cleaning, chemical balancing, equipment repair...">
+      </div>
+      
+      <div class="input-group">
+        <label>Your message *</label>
+        <textarea rows="4" id="message" placeholder="Tell us about your pool, challenges, or schedule request..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Request</button>
+      <p style="font-size: 0.7rem; margin-top: 1rem; text-align: center; color: var(--text-muted);"><i class="fas fa-shield-alt"></i> Your info is secure. No spam, just pool expertise.</p>
+    </form>
+  </div>
+</div>
+
+<!-- FULL WIDTH MAP SECTION (edge-to-edge) BEFORE FOOTER -->
+<div class="map-fullwidth">
+  <div class="map-card-full">
+    <div class="map-header">
+      <h3><i class="fas fa-map-pin"></i> Bluewave Headquarters</h3>
+      <div class="map-badge"><i class="fas fa-water"></i> Miami Pool Innovation Hub</div>
+    </div>
+    <div id="bluewaveMap"></div>
+    <div class="map-footer-info">
+      <span><i class="fas fa-location-dot"></i> 1560 Bluewave Avenue, Miami, FL 33132</span>
+      <span><i class="fas fa-clock"></i> Mon–Fri: 8am – 7pm EST</span>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+        <span class="logo-text">Bluewave</span>
+      </a>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Pool Services</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Pool Care Guide</a></li>
+        <li><a href="#">Chemical Safety</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2026 Bluewave Pool Services — Mobile-first chemistry & cleaning. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  (function() {
+    const htmlEl = document.documentElement;
+    const mobileMenu = document.getElementById('mobileNavMenu');
+    const overlay = document.getElementById('mobileOverlay');
+    const hamburger = document.getElementById('hamburger');
+    const themeToggle = document.getElementById('themeToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+    const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+    const rtlSpan = document.getElementById('rtlButtonText');
+    const mobileRtlSpan = document.getElementById('mobileRtlButtonText');
+
+    function closeMenu() { 
+      if(mobileMenu) { mobileMenu.classList.remove('open'); overlay?.classList.remove('active'); document.body.style.overflow = ''; if(hamburger) hamburger.innerHTML = '<i class="fas fa-bars"></i>'; } 
+    }
+    function openMenu() { 
+      if(mobileMenu) { mobileMenu.classList.add('open'); overlay?.classList.add('active'); document.body.style.overflow = 'hidden'; if(hamburger) hamburger.innerHTML = '<i class="fas fa-times"></i>'; } 
+    }
+    function toggleMenu() { mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); }
+    if (hamburger) hamburger.addEventListener('click', toggleMenu);
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    function applyThemeUI(isDark) {
+      if(isDark) {
+        htmlEl.classList.add('dark');
+      } else {
+        htmlEl.classList.remove('dark');
+      }
+      const moonIcon = document.querySelector('#themeToggle i');
+      if(moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+      if(mobileThemeToggle) {
+        mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
+      }
+      if(window.bluewaveMap && typeof window.updateMapTheme === 'function') {
+        window.updateMapTheme();
+      }
+      localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleTheme() {
+      const willBeDark = !htmlEl.classList.contains('dark');
+      applyThemeUI(willBeDark);
+    }
+
+    if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if(mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+
+    function setDirection(isRtl) {
+      if(isRtl) { 
+        htmlEl.setAttribute('dir', 'rtl'); 
+        if(rtlSpan) rtlSpan.textContent = 'LTR'; 
+        if(mobileRtlSpan) mobileRtlSpan.textContent = 'LTR Mode'; 
+      } else { 
+        htmlEl.setAttribute('dir', 'ltr'); 
+        if(rtlSpan) rtlSpan.textContent = 'RTL'; 
+        if(mobileRtlSpan) mobileRtlSpan.textContent = 'RTL Mode'; 
+      }
+      localStorage.setItem('bluewaveDirection', isRtl ? 'rtl' : 'ltr');
+      closeMenu();
+    }
+    function toggleRTL() { setDirection(htmlEl.getAttribute('dir') !== 'rtl'); }
+    if(rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+    if(mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+    const savedTheme = localStorage.getItem('bluewaveTheme');
+    if(savedTheme === 'dark') applyThemeUI(true);
+    else applyThemeUI(false);
+    
+    const savedDir = localStorage.getItem('bluewaveDirection');
+    if(savedDir === 'rtl') setDirection(true);
+    else setDirection(false);
+    
+    // Contact form submission
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const firstName = document.getElementById('firstName')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        if(!firstName || !email) {
+          alert('Please fill out your name and email address.');
+          return;
+        }
+        alert(`✨ Thank you ${firstName}! Your message has been sent to Bluewave pool experts. We'll reach out within 24h.`);
+        contactForm.reset();
+      });
+    }
+
+    // Map Initialization with theme sync
+    const mapLat = 25.7617;
+    const mapLng = -80.1918;
+    let mapInstance = null;
+    let currentTileLayer = null;
+
+    function initMap() {
+      const mapContainer = document.getElementById('bluewaveMap');
+      if (!mapContainer || mapInstance) return;
+      
+      const isDark = htmlEl.classList.contains('dark');
+      const tileUrl = isDark 
+        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+        : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+      
+      mapInstance = L.map('bluewaveMap').setView([mapLat, mapLng], 14);
+      currentTileLayer = L.tileLayer(tileUrl, {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; CartoDB',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(mapInstance);
+      
+      const customIcon = L.divIcon({
+        html: '<div style="background-color: #6CC0BA; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,0.3); border: 2px solid white;"><i class="fas fa-droplet" style="color: white; font-size: 18px;"></i></div>',
+        className: 'custom-pool-marker',
+        iconSize: [34, 34],
+        popupAnchor: [0, -17]
+      });
+      const marker = L.marker([mapLat, mapLng], { icon: customIcon }).addTo(mapInstance);
+      marker.bindPopup(`
+        <b>🏊 Bluewave HQ</b><br>
+        1560 Bluewave Avenue, Suite 200<br>
+        Miami, FL 33132<br>
+        <i>Your crystal-clear pool specialists</i>
+      `).openPopup();
+    }
+
+    function updateMapTheme() {
+      if (!mapInstance) return;
+      const isDark = htmlEl.classList.contains('dark');
+      const newTileUrl = isDark 
+        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+        : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+      if (currentTileLayer) {
+        mapInstance.removeLayer(currentTileLayer);
+      }
+      currentTileLayer = L.tileLayer(newTileUrl, {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; CartoDB',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(mapInstance);
+    }
+
+    window.updateMapTheme = updateMapTheme;
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMap);
+    } else {
+      initMap();
+    }
+    setTimeout(() => { if(mapInstance) updateMapTheme(); }, 200);
+  })();
+</script>
+</body>
+</html>

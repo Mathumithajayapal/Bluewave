@@ -195,7 +195,7 @@
       background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
       background-clip: text;
       -webkit-background-clip: text;
-      color: transparent;
+       color:black;
       font-weight: 700;
       letter-spacing: -0.3px;
     }
@@ -404,28 +404,56 @@
       margin: 0.3rem 0 0.1rem;
       flex-wrap: wrap;
     }
-    .social-icon {
-      background: var(--social-bg);
-      width: 36px;           /* slightly smaller */
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      color: var(--social-icon-color);
-      text-decoration: none;
-      transition: all 0.2s ease;
-      border: 1px solid var(--social-border);
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
-    }
-    .social-icon:hover {
-      background: var(--card-border);
-      transform: translateY(-2px);
-      border-color: var(--icon-color);
-      color: #3f968f;
-    }
+   .social-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+/* Google */
+#googleSignup i{
+    color:#DB4437;
+}
+
+/* Facebook */
+#facebookSignup i{
+    color:#1877F2;
+}
+
+/* Apple */
+#appleSignup i{
+    color:#000000;
+}
+
+/* Apple icon in dark mode */
+body.dark #appleSignup i{
+    color:#ffffff;
+}
+
+/* Hover Effect */
+.social-icon:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* Keep Apple icon visible in dark mode */
+body.dark #appleIcon i{
+    color:#ffffff;
+}
+
+body.dark .social-icon{
+    background:#1f1f1f;
+    border-color:#3a3a3a;
+}
     body.dark .social-icon:hover {
       background: #2C2C2C;
       color: #A9E6E0;
@@ -657,14 +685,13 @@
       <!-- Email -->
       <label for="email" class="field-label">Email address</label>
       <div class="input-group">
-        <i class="fas fa-envelope"></i>
         <input type="email" id="email" name="email" autocomplete="email" placeholder="service@bluewave.com" required>
       </div>
 
       <!-- Password -->
       <label for="password" class="field-label">Password</label>
       <div class="input-group">
-        <i class="fas fa-lock"></i>
+       
         <input type="password" id="password" name="password" autocomplete="new-password" placeholder="••••••••" required>
       </div>
 
@@ -691,7 +718,7 @@
         <div class="divider">or sign up with</div>
         <div class="social-icons">
           <div class="social-icon" id="googleSignup" aria-label="Sign up with Google">
-            <i class="fab fa-google"></i>
+            </html><img src="https://www.google.com/favicon.ico" style="width:40px;height:40px;">
           </div>
           <div class="social-icon" id="facebookSignup" aria-label="Sign up with Facebook">
             <i class="fab fa-facebook-f"></i>

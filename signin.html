@@ -194,7 +194,7 @@
 
         .logo i {
             font-size: 2rem;
-            color: var(--logo-icon);
+            color: #000000;
             transition: color 0.2s ease;
         }
 
@@ -699,15 +699,10 @@ body.dark .social-icon{
       text-decoration: none;
     }
 
-    .logo-icon {
+   .logo-icon {
       font-size: 28px;
-      color: var(--pool-primary);
-      transition: transform 0.2s ease;
-    }
-
-    .logo:hover .logo-icon {
-      transform: scale(0.98);
-      color: var(--pool-dark);
+      color: #000000; /* Sets icon to black */
+      transition: color 0.3s ease; /* Smooth transition for dark mode, no hover movement */
     }
 
     .logo-text {
@@ -733,7 +728,11 @@ body.dark .social-icon{
 .dark .logo-text{
     color: #fff;        /* White in Dark Mode */
 }
-
+/* Dark Mode */
+.dark .logo-text,
+.dark .logo-icon {
+    color: #ffffff;        /* White in Dark Mode so it remains visible */
+}
     </style>
 </head>
 <body>
@@ -756,8 +755,9 @@ body.dark .social-icon{
         <!-- AquaCare Brand Logo — text swapped via JS -->
         <div class="brand-logo">
             <div class="logo">
-                <a href="index.html" class="logo">
-      <span class="logo-text" id="brandText">AquaCare</span> <!-- ADDED MISSING ID HERE -->
+         <a href="index.html" class="logo">
+      <i class="fas fa-hand-holding-droplet logo-icon"></i>
+      <span class="logo-text">AquaCare</span>
     </a>
             </div>
         </div>

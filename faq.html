@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bluewave | Frequently Asked Questions — Pool Cleaning & Chemical Balancing</title>
+  <title>AquaCare | Frequently Asked Questions — Pool Cleaning & Chemical Balancing</title>
   <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">  
 
   
@@ -787,6 +787,19 @@
         font-size:2.2rem;
     }
 }
+.logo-text{
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #000;        /* Black in Light Mode */
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .logo-text{
+    color: #fff;        /* White in Dark Mode */
+}
   </style>
 </head>
 <body>
@@ -794,7 +807,7 @@
 <header class="site-header">
   <div class="nav-container">
     <a href="index.html" class="logo">
-      <span class="logo-text">Bluewave</span>
+      <span class="logo-text">AquaCare</span>
     </a>
     <div class="desktop-nav">
       <div class="dropdown">
@@ -847,7 +860,7 @@
     <div class="faq-badge">
       <i class="fas fa-circle-question"></i> <span>knowledge center · expert answers</span>
     </div>
-    <h1 class="faq-title">Got questions about Bluewave?</h1>
+    <h1 class="faq-title">Got questions about AquaCare?</h1>
     <p class="faq-subtitle">Everything you need to know about our mobile-first pool cleaning, chemical balancing, and smart maintenance technology.</p>
     <div class="faq-search-section">
       <div class="search-wrapper">
@@ -872,7 +885,7 @@
   <div class="footer-grid">
     <div class="footer-col">
       <a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
-        <span class="logo-text">Bluewave</span>
+        <span class="logo-text">AquaCare</span>
       </a>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p>
     </div>
@@ -903,21 +916,21 @@
       </ul>
     </div>
   </div>
-  <div class="copyright">© 2026 Bluewave Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
+  <div class="copyright">© 2026 AquaCare Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
 </footer>
 
 <script>
   (function() {
     // FAQ Data 
     const faqData = [
-      { id: 1, question: "How does Bluewave chemical balancing work?", answer: "Our IoT sensors and AI-driven algorithms monitor pH, chlorine, alkalinity, and sanitizer levels in real time. We then adjust chemical dosages automatically via our mobile fleet or suggest precise manual steps. You receive live updates through the dashboard.", category: "chemical" },
-      { id: 2, question: "What areas do you serve for mobile pool cleaning?", answer: "Bluewave currently operates in major metropolitan zones including Miami, Orlando, Austin, San Diego, and Phoenix. We're expanding monthly — enter your zip code in the app to check coverage.", category: "service" },
+      { id: 1, question: "How does AquaCare chemical balancing work?", answer: "Our IoT sensors and AI-driven algorithms monitor pH, chlorine, alkalinity, and sanitizer levels in real time. We then adjust chemical dosages automatically via our mobile fleet or suggest precise manual steps. You receive live updates through the dashboard.", category: "chemical" },
+      { id: 2, question: "What areas do you serve for mobile pool cleaning?", answer: "AquaCare currently operates in major metropolitan zones including Miami, Orlando, Austin, San Diego, and Phoenix. We're expanding monthly — enter your zip code in the app to check coverage.", category: "service" },
       { id: 3, question: "Can I schedule one-time cleaning instead of a subscription?", answer: "Absolutely. While our subscription plans offer the best value, you can book on-demand deep cleaning or chemical balancing services directly from the mobile app without any commitment.", category: "service" },
-      { id: 4, question: "Is the Bluewave mobile app compatible with smart home devices?", answer: "Yes! Our platform integrates with Alexa, Google Home, and IFTTT. You can receive voice alerts for low pH, schedule cleaning via voice commands, and even see real-time water quality stats.", category: "tech" },
-      { id: 5, question: "What happens if my pool chemistry is dangerously off?", answer: "Bluewave's system immediately flags critical imbalances and triggers an emergency service alert. Our nearest technician will be dispatched or you'll receive step-by-step emergency balancing instructions inside the app — we prioritize safety.", category: "chemical" },
+      { id: 4, question: "Is the AquaCare mobile app compatible with smart home devices?", answer: "Yes! Our platform integrates with Alexa, Google Home, and IFTTT. You can receive voice alerts for low pH, schedule cleaning via voice commands, and even see real-time water quality stats.", category: "tech" },
+      { id: 5, question: "What happens if my pool chemistry is dangerously off?", answer: "AquaCare's system immediately flags critical imbalances and triggers an emergency service alert. Our nearest technician will be dispatched or you'll receive step-by-step emergency balancing instructions inside the app — we prioritize safety.", category: "chemical" },
       { id: 6, question: "Are there any hidden fees or contracts?", answer: "No hidden fees. All pricing is transparent upfront: pay per visit or choose monthly subscription. Cancel anytime through your dashboard with zero penalty. No long-term contracts.", category: "billing" },
       { id: 7, question: "How accurate are the chemical sensor readings?", answer: "Our lab-grade sensors are calibrated weekly, providing accuracy within ±0.02 pH and ±2 ppm for chlorine. Independent testing shows 99.3% reliability in residential pools.", category: "tech" },
-      { id: 8, question: "Does Bluewave offer eco-friendly chemical alternatives?", answer: "Yes! Our Eco-Clean technology uses low-waste mineral systems, enzyme-based clarifiers, and reduced stabilizer formulas. We minimize chlorine usage while keeping water crystal clear.", category: "chemical" },
+      { id: 8, question: "Does AquaCare offer eco-friendly chemical alternatives?", answer: "Yes! Our Eco-Clean technology uses low-waste mineral systems, enzyme-based clarifiers, and reduced stabilizer formulas. We minimize chlorine usage while keeping water crystal clear.", category: "chemical" },
       { id: 9, question: "Can I switch my subscription plan anytime?", answer: "Of course. Upgrade, downgrade or pause your plan with one click in your billing settings. Prorated credits apply to partial months. We believe in flexibility.", category: "billing" },
       { id: 10, question: "How do I get support if something goes wrong?", answer: "Contact our pool care specialists via live chat (in-app) 7am–10pm EST, or call our support hotline. Premium subscribers get priority 24/7 emergency support.", category: "service" }
     ];
@@ -1011,19 +1024,19 @@
     if (hamburger) hamburger.addEventListener('click', toggleMenu);
     if (overlay) overlay.addEventListener('click', closeMenu);
 
-    function setTheme(isDark) { if(isDark) htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark'); const moonIcon = document.querySelector('#themeToggle i'); if(moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon'; if(mobileThemeToggle) mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode'; localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light'); }
+    function setTheme(isDark) { if(isDark) htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark'); const moonIcon = document.querySelector('#themeToggle i'); if(moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon'; if(mobileThemeToggle) mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode'; localStorage.setItem('AquaCareTheme', isDark ? 'dark' : 'light'); }
     function toggleTheme() { setTheme(!htmlEl.classList.contains('dark')); }
     if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
     if(mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
 
-    function setDirection(isRtl){ if(isRtl){ htmlEl.setAttribute('dir', 'rtl'); if(rtlSpan) rtlSpan.textContent = 'LTR'; if(mobileRtlSpan) mobileRtlSpan.textContent = 'LTR Mode'; } else { htmlEl.setAttribute('dir', 'ltr'); if(rtlSpan) rtlSpan.textContent = 'RTL'; if(mobileRtlSpan) mobileRtlSpan.textContent = 'RTL Mode'; } localStorage.setItem('bluewaveDirection', isRtl ? 'rtl' : 'ltr'); closeMenu(); }
+    function setDirection(isRtl){ if(isRtl){ htmlEl.setAttribute('dir', 'rtl'); if(rtlSpan) rtlSpan.textContent = 'LTR'; if(mobileRtlSpan) mobileRtlSpan.textContent = 'LTR Mode'; } else { htmlEl.setAttribute('dir', 'ltr'); if(rtlSpan) rtlSpan.textContent = 'RTL'; if(mobileRtlSpan) mobileRtlSpan.textContent = 'RTL Mode'; } localStorage.setItem('AquaCareDirection', isRtl ? 'rtl' : 'ltr'); closeMenu(); }
     function toggleRTL(){ setDirection(htmlEl.getAttribute('dir') !== 'rtl'); }
     if(rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
     if(mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
 
-    const savedTheme = localStorage.getItem('bluewaveTheme');
+    const savedTheme = localStorage.getItem('AquaCareTheme');
     if(savedTheme === 'dark') setTheme(true); else setTheme(false);
-    const savedDir = localStorage.getItem('bluewaveDirection');
+    const savedDir = localStorage.getItem('AquaCareDirection');
     if(savedDir === 'rtl') setDirection(true); else setDirection(false);
     if(mobileMenu) mobileMenu.classList.remove('open');
     if(overlay) overlay.classList.remove('active');

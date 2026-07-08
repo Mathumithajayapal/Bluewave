@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bluewave | Crystal Clarity – Stories & Innovations</title>
+  <title>AquaCare | Crystal Clarity – Stories & Innovations</title>
   <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">  
 
   
@@ -769,7 +769,19 @@
   line-height: 1.8;
   max-width: 280px;
 }
+.logo-text{
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #000;        /* Black in Light Mode */
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
 
+/* Dark Mode */
+.dark .logo-text{
+    color: #fff;        /* White in Dark Mode */
+}
   </style>
 </head>
 <body>
@@ -777,7 +789,7 @@
 <header class="site-header">
   <div class="nav-container">
     <a href="#" class="logo">
-      <span class="logo-text">Bluewave</span>
+      <span class="logo-text">AquaCare</span>
     </a>
     <div class="desktop-nav">
       <div class="dropdown"><a href="" class="nav-link">Home <i class="fas fa-caret-down"></i></a><div class="dropdown-menu"><div class="dropdown-inner"><a href="index.html">Home1</a><a href="home2.html">Home2</a></div></div></div>
@@ -851,8 +863,8 @@
       </div>
       <!-- Card 3 -->
       <div class="blog-card" data-category="culture">
-        <div class="card-img"><img src="image/pool (5).jpg" alt="Bluewave team working"></div>
-        <div class="card-content"><span class="card-category">OUR CULTURE</span><h3>Behind the Wave: Meet Bluewave’s Water Guardians</h3><p class="card-excerpt">From field techs to eco-innovators: the stories, passion, and mission driving crystal-clear communities.</p><div class="card-footer-group"><div class="read-more-link">Read more <i class="fas fa-arrow-right"></i></div><div class="card-meta"><span><i class="far fa-calendar-alt"></i> April 28, 2026</span><span><i class="far fa-clock"></i> 5 min read</span></div></div></div>
+        <div class="card-img"><img src="image/pool (5).jpg" alt="AquaCare team working"></div>
+        <div class="card-content"><span class="card-category">OUR CULTURE</span><h3>Behind the Wave: Meet AquaCare’s Water Guardians</h3><p class="card-excerpt">From field techs to eco-innovators: the stories, passion, and mission driving crystal-clear communities.</p><div class="card-footer-group"><div class="read-more-link">Read more <i class="fas fa-arrow-right"></i></div><div class="card-meta"><span><i class="far fa-calendar-alt"></i> April 28, 2026</span><span><i class="far fa-clock"></i> 5 min read</span></div></div></div>
       </div>
       <!-- Card 4 -->
       <div class="blog-card" data-category="brewing">
@@ -882,7 +894,7 @@
       <!-- Card 9 (NEW) -->
       <div class="blog-card" data-category="culture">
         <div class="card-img"><img src="image/today (1).jpg" alt="Community clean water project"></div>
-        <div class="card-content"><span class="card-category">OUR CULTURE</span><h3>Bluewave for Good: Bringing Clean Water to Local Schools</h3><p class="card-excerpt">How our team partners with communities to install sustainable pool systems and teach water safety.</p><div class="card-footer-group"><div class="read-more-link">Read more <i class="fas fa-arrow-right"></i></div><div class="card-meta"><span><i class="far fa-calendar-alt"></i> May 26, 2026</span><span><i class="far fa-clock"></i> 5 min read</span></div></div></div>
+        <div class="card-content"><span class="card-category">OUR CULTURE</span><h3>AquaCare for Good: Bringing Clean Water to Local Schools</h3><p class="card-excerpt">How our team partners with communities to install sustainable pool systems and teach water safety.</p><div class="card-footer-group"><div class="read-more-link">Read more <i class="fas fa-arrow-right"></i></div><div class="card-meta"><span><i class="far fa-calendar-alt"></i> May 26, 2026</span><span><i class="far fa-clock"></i> 5 min read</span></div></div></div>
       </div>
     </div>
 
@@ -894,12 +906,12 @@
 
 <footer class="footer">
   <div class="footer-grid">
-    <div class="footer-col"><a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><span class="logo-text">Bluewave</span></a><p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p></div>
+    <div class="footer-col"><a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><span class="logo-text">AquaCare</span></a><p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p></div>
     <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#">Pool Services</a></li><li><a href="#">Pricing</a></li><li><a href="#">How It Works</a></li><li><a href="#">Contact Us</a></li></ul></div>
     <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Pool Care Guide</a></li><li><a href="#">Chemical Safety</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
     <div class="footer-col"><h4>Connect</h4><ul><li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li><li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li><li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li></ul></div>
   </div>
-  <div class="copyright">© 2026 Bluewave Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
+  <div class="copyright">© 2026 AquaCare Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
 </footer>
 
 <script>
@@ -927,7 +939,7 @@
       if (moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
       const mobileToggleText = document.getElementById('mobileThemeToggle');
       if (mobileToggleText) mobileToggleText.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
-      localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+      localStorage.setItem('AquaCareTheme', isDark ? 'dark' : 'light');
     }
     function toggleTheme() { setTheme(!htmlEl.classList.contains('dark')); refreshMobileBtn(); }
     function refreshMobileBtn() { const btn = document.getElementById('mobileThemeToggle'); if (btn) btn.innerHTML = htmlEl.classList.contains('dark') ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode'; }
@@ -937,17 +949,17 @@
     function setDirection(isRtl) {
       if (isRtl) { htmlEl.setAttribute('dir', 'rtl'); if (rtlSpan) rtlSpan.textContent = 'LTR'; if (mobileRtlSpan) mobileRtlSpan.textContent = 'LTR Mode'; }
       else { htmlEl.setAttribute('dir', 'ltr'); if (rtlSpan) rtlSpan.textContent = 'RTL'; if (mobileRtlSpan) mobileRtlSpan.textContent = 'RTL Mode'; }
-      localStorage.setItem('bluewaveDirection', isRtl ? 'rtl' : 'ltr');
+      localStorage.setItem('AquaCareDirection', isRtl ? 'rtl' : 'ltr');
       closeMenu();
     }
     function toggleRTL() { setDirection(htmlEl.getAttribute('dir') !== 'rtl'); }
     if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
     if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
 
-    const savedTheme = localStorage.getItem('bluewaveTheme');
+    const savedTheme = localStorage.getItem('AquaCareTheme');
     if (savedTheme === 'dark') setTheme(true); else setTheme(false);
     refreshMobileBtn();
-    const savedDir = localStorage.getItem('bluewaveDirection');
+    const savedDir = localStorage.getItem('AquaCareDirection');
     if (savedDir === 'rtl') setDirection(true); else setDirection(false);
     if (mobileMenu) mobileMenu.classList.remove('open');
     if (overlay) overlay.classList.remove('active');

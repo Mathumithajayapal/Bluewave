@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Bluewave | Smart Pool Plans & Interactive Pricing</title>
+    <title>AquaCare | Smart Pool Plans & Interactive Pricing</title>
     <link rel="icon" type="image/jpeg" href="image/pool (4).jpg" />
 
     <!-- Google Fonts + Font Awesome 6 -->
@@ -866,6 +866,19 @@
 .pro-btn i {
     color: #000000;
 }
+.logo-text{
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #000;        /* Black in Light Mode */
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .logo-text{
+    color: #fff;        /* White in Dark Mode */
+}
     </style>
 </head>
 
@@ -873,7 +886,7 @@
 
     <header class="site-header">
         <div class="nav-container">
-            <a href="#" class="logo"><span class="logo-text">Bluewave</span></a>
+            <a href="#" class="logo"><span class="logo-text">AquaCare</span></a>
             <div class="desktop-nav">
                 <div class="dropdown"><a href="#" class="nav-link">Home <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-menu">
@@ -977,12 +990,12 @@
 
     <footer class="footer">
         <div class="footer-grid">
-            <div class="footer-col"><a href="#" class="logo" style="margin-bottom:1rem; display:inline-flex;"><span class="logo-text">Bluewave</span></a><p style="color:var(--text-muted); font-size:0.85rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p></div>
+            <div class="footer-col"><a href="#" class="logo" style="margin-bottom:1rem; display:inline-flex;"><span class="logo-text">AquaCare</span></a><p style="color:var(--text-muted); font-size:0.85rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p></div>
             <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#">Pool Services</a></li><li><a href="#">Pricing</a></li><li><a href="#">How It Works</a></li><li><a href="#">Contact Us</a></li></ul></div>
             <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Pool Care Guide</a></li><li><a href="#">Chemical Safety</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
             <div class="footer-col"><h4>Connect</h4><ul><li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li><li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li><li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li></ul></div>
         </div>
-        <div class="copyright">© 2026 Bluewave Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
+        <div class="copyright">© 2026 AquaCare Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
     </footer>
 
     <script>
@@ -1023,7 +1036,7 @@
                 if (moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
                 if (mobileThemeToggle) mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' :
                     '<i class="fas fa-moon"></i> Dark Mode';
-                localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+                localStorage.setItem('AquaCareTheme', isDark ? 'dark' : 'light');
             }
 
             function toggleTheme() { setTheme(!document.body.classList.contains('dark')); }
@@ -1036,16 +1049,16 @@
                     mobileRtlSpan.textContent = 'LTR Mode'; } else { html.setAttribute('dir', 'ltr');
                     rtlSpan.textContent = 'RTL';
                     mobileRtlSpan.textContent = 'RTL Mode'; }
-                localStorage.setItem('bluewaveDirection', isRtl ? 'rtl' : 'ltr');
+                localStorage.setItem('AquaCareDirection', isRtl ? 'rtl' : 'ltr');
                 closeMobileMenu();
             }
 
             function toggleRTL() { setDirection(html.getAttribute('dir') !== 'rtl'); }
             rtlToggle?.addEventListener('click', toggleRTL);
             mobileRtlToggle?.addEventListener('click', toggleRTL);
-            if (localStorage.getItem('bluewaveTheme') === 'dark') setTheme(true);
+            if (localStorage.getItem('AquaCareTheme') === 'dark') setTheme(true);
             else setTheme(false);
-            if (localStorage.getItem('bluewaveDirection') === 'rtl') setDirection(true);
+            if (localStorage.getItem('AquaCareDirection') === 'rtl') setDirection(true);
             else setDirection(false);
             if (window.innerWidth >= 1280) closeMobileMenu();
             window.addEventListener('resize', () => { if (window.innerWidth >= 1280) closeMobileMenu(); });

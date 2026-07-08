@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   
-  <title>Bluewave | Schedule Pool Service – Hero Banner</title>
+  <title>AquaCare | Schedule Pool Service – Hero Banner</title>
 <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">  
   <!-- Google Fonts + Font Awesome 6 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -844,6 +844,19 @@
   line-height: 1.8;
   max-width: 280px;
 }
+.logo-text{
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #000;        /* Black in Light Mode */
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .logo-text{
+    color: #fff;        /* White in Dark Mode */
+}
   </style>
 </head>
 <body>
@@ -851,7 +864,7 @@
 <header class="site-header">
   <div class="nav-container">
     <a href="#" class="logo">
-      <span class="logo-text">Bluewave</span>
+      <span class="logo-text">AquaCare</span>
     </a>
     <div class="desktop-nav">
       <div class="dropdown">
@@ -906,7 +919,7 @@
     <div class="hero-badge">
     </div>
     <h1 class="hero-title">Crystal Clear Water,<br>Pure Peace of Mind</h1>
-    <p class="hero-desc">Trust Bluewave’s certified technicians to keep your pool immaculate year-round. Eco‑friendly, reliable, and just a click away.</p>
+    <p class="hero-desc">Trust AquaCare’s certified technicians to keep your pool immaculate year-round. Eco‑friendly, reliable, and just a click away.</p>
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-number">12k+</div>
@@ -947,7 +960,7 @@
           </div>
           <div class="input-group">
             <label><i class="fas fa-envelope"></i> Email Address</label>
-            <input type="email" id="email" placeholder="hello@bluewave.com" required>
+            <input type="email" id="email" placeholder="hello@AquaCare.com" required>
           </div>
           <div class="input-group">
             <label><i class="fas fa-phone-alt"></i> Phone Number</label>
@@ -1028,12 +1041,12 @@
 
 <footer class="footer">
   <div class="footer-grid">
-    <div class="footer-col"><a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><span class="logo-text">Bluewave</span></a><p style="color: var(--text-muted); font-size: 0.85rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p></div>
+    <div class="footer-col"><a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><span class="logo-text">AquaCare</span></a><p style="color: var(--text-muted); font-size: 0.85rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p></div>
     <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#">Pool Services</a></li><li><a href="#">Pricing</a></li><li><a href="#">How It Works</a></li><li><a href="#">Contact Us</a></li></ul></div>
     <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Pool Care Guide</a></li><li><a href="#">Chemical Safety</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
     <div class="footer-col"><h4>Connect</h4><ul><li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li><li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li><li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li></ul></div>
   </div>
-  <div class="copyright">© 2026 Bluewave Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
+  <div class="copyright">© 2026 AquaCare Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
 </footer>
 
 <script>
@@ -1061,7 +1074,7 @@
       if(moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
       const mobileToggleText = document.getElementById('mobileThemeToggle');
       if(mobileToggleText) mobileToggleText.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
-      localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+      localStorage.setItem('AquaCareTheme', isDark ? 'dark' : 'light');
     }
     function toggleTheme() { setTheme(!htmlEl.classList.contains('dark')); }
     if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
@@ -1070,15 +1083,15 @@
     function setDirection(isRtl) {
       if(isRtl) { htmlEl.setAttribute('dir', 'rtl'); if(rtlSpan) rtlSpan.textContent = 'LTR'; if(mobileRtlSpan) mobileRtlSpan.textContent = 'LTR Mode';}
       else { htmlEl.setAttribute('dir', 'ltr'); if(rtlSpan) rtlSpan.textContent = 'RTL'; if(mobileRtlSpan) mobileRtlSpan.textContent = 'RTL Mode';}
-      localStorage.setItem('bluewaveDirection', isRtl ? 'rtl' : 'ltr');
+      localStorage.setItem('AquaCareDirection', isRtl ? 'rtl' : 'ltr');
       closeMenu();
     }
     function toggleRTL() { setDirection(htmlEl.getAttribute('dir') !== 'rtl'); }
     if(rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
     if(mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
-    const savedTheme = localStorage.getItem('bluewaveTheme');
+    const savedTheme = localStorage.getItem('AquaCareTheme');
     setTheme(savedTheme === 'dark');
-    const savedDir = localStorage.getItem('bluewaveDirection');
+    const savedDir = localStorage.getItem('AquaCareDirection');
     setDirection(savedDir === 'rtl');
     if(mobileMenu) mobileMenu.classList.remove('open');
     if(overlay) overlay.classList.remove('active');

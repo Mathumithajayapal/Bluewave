@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bluewave | Our Pool Services – Professional Cleaning & Chemical Care</title>
+  <title>AquaCare | Our Pool Services – Professional Cleaning & Chemical Care</title>
   <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">  
 
   
@@ -763,6 +763,19 @@
 .mobile-link.active i {
   color: #000;
 }
+.logo-text{
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #000;        /* Black in Light Mode */
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .logo-text{
+    color: #fff;        /* White in Dark Mode */
+}
   </style>
 </head>
 <body>
@@ -770,7 +783,7 @@
 <header class="site-header">
   <div class="nav-container">
     <a href="#" class="logo">
-      <span class="logo-text">Bluewave</span>
+      <span class="logo-text">AquaCare</span>
     </a>
     <div class="desktop-nav">
       <div class="dropdown">
@@ -1030,7 +1043,7 @@
   <div class="footer-grid">
     <div class="footer-col">
       <a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
-        <span class="logo-text">Bluewave</span>
+        <span class="logo-text">AquaCare</span>
       </a>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p>
     </div>
@@ -1047,7 +1060,7 @@
       <ul><li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li><li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li><li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li></ul>
     </div>
   </div>
-  <div class="copyright">© 2026 Bluewave Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
+  <div class="copyright">© 2026 AquaCare Pool Services — Mobile-first chemistry & cleaning. All rights reserved.</div>
 </footer>
 
 <script>
@@ -1075,7 +1088,7 @@
       if(moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
       const mobileToggle = document.getElementById('mobileThemeToggle');
       if(mobileToggle) mobileToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
-      localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+      localStorage.setItem('AquaCareTheme', isDark ? 'dark' : 'light');
     }
     function toggleTheme() { setTheme(!htmlEl.classList.contains('dark')); }
     if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
@@ -1084,16 +1097,16 @@
     function setDirection(isRtl) {
       if(isRtl){ htmlEl.setAttribute('dir','rtl'); if(rtlSpan) rtlSpan.textContent='LTR'; if(mobileRtlSpan) mobileRtlSpan.textContent='LTR Mode'; }
       else{ htmlEl.setAttribute('dir','ltr'); if(rtlSpan) rtlSpan.textContent='RTL'; if(mobileRtlSpan) mobileRtlSpan.textContent='RTL Mode'; }
-      localStorage.setItem('bluewaveDirection', isRtl ? 'rtl' : 'ltr');
+      localStorage.setItem('AquaCareDirection', isRtl ? 'rtl' : 'ltr');
       closeMenu();
     }
     function toggleRTL() { setDirection(htmlEl.getAttribute('dir') !== 'rtl'); }
     if(rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
     if(mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
 
-    const savedTheme = localStorage.getItem('bluewaveTheme');
+    const savedTheme = localStorage.getItem('AquaCareTheme');
     if(savedTheme === 'dark') setTheme(true); else setTheme(false);
-    const savedDir = localStorage.getItem('bluewaveDirection');
+    const savedDir = localStorage.getItem('AquaCareDirection');
     if(savedDir === 'rtl') setDirection(true); else setDirection(false);
     if(mobileMenu) mobileMenu.classList.remove('open');
     if(overlay) overlay.classList.remove('active');

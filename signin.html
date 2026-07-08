@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Bluewave · Mobile Pool Service Login</title>
+    <title>AquaCare · Mobile Pool Service Login</title>
     <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">
 
     <!-- Google Fonts + Font Awesome 6 -->
@@ -720,6 +720,19 @@ body.dark .social-icon{
       color: transparent;
       letter-spacing: -0.2px;
     }
+    .logo-text{
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #000;        /* Black in Light Mode */
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .logo-text{
+    color: #fff;        /* White in Dark Mode */
+}
 
     </style>
 </head>
@@ -740,11 +753,11 @@ body.dark .social-icon{
     </div>
 
     <div class="login-card">
-        <!-- Bluewave Brand Logo — text swapped via JS -->
+        <!-- AquaCare Brand Logo — text swapped via JS -->
         <div class="brand-logo">
             <div class="logo">
                 <a href="index.html" class="logo">
-      <span class="logo-text" id="brandText">Bluewave</span> <!-- ADDED MISSING ID HERE -->
+      <span class="logo-text" id="brandText">AquaCare</span> <!-- ADDED MISSING ID HERE -->
     </a>
             </div>
         </div>
@@ -759,7 +772,7 @@ body.dark .social-icon{
             <label for="email" class="field-label">Email address</label>
             <div class="input-group">
                
-                <input type="email" id="email" name="email" autocomplete="email" placeholder="service@bluewave.com" required>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="service@AquaCare.com" required>
             </div>
 
             <label for="password" class="field-label">Password</label>
@@ -796,7 +809,7 @@ body.dark .social-icon{
             </div>
 
             <div class="signup-wrapper">
-                💧 New to Bluewave?
+                💧 New to AquaCare?
                 <a href="signup.html" id="signupLink">Create account</a>
             </div>
             <div class="demo-hint">
@@ -836,7 +849,7 @@ body.dark .social-icon{
                         '<i class="fas fa-moon"></i> <span>Dark</span>';
                 }
             }
-            if (localStorage.getItem('bluewaveTheme') === 'dark') {
+            if (localStorage.getItem('AquaCareTheme') === 'dark') {
                 body.classList.add('dark');
                 updateDarkUI(true);
             } else {
@@ -845,7 +858,7 @@ body.dark .social-icon{
             }
             darkToggle.addEventListener('click', function() {
                 const isDark = body.classList.toggle('dark');
-                localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+                localStorage.setItem('AquaCareTheme', isDark ? 'dark' : 'light');
                 updateDarkUI(isDark);
             });
 
@@ -862,23 +875,23 @@ body.dark .social-icon{
                 if (enable) {
                     htmlElem.setAttribute('dir', 'rtl');
                     document.body.setAttribute('dir', 'rtl'); // ADDED THIS TO FIX CSS TARGETING
-                    localStorage.setItem('bluewaveRTL', 'true');
+                    localStorage.setItem('AquaCareRTL', 'true');
                     if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-arrow-left"></i> <span>LTR</span>';
                     // Swap brand and heading text to reversed versions
-                    if(brandText) brandText.textContent = reverseString('Bluewave');   // "ewaweulB"
+                    if(brandText) brandText.textContent = reverseString('AquaCare');   // "ewaweulB"
                     if(headingText) headingText.textContent = reverseString('welcome back'); // "kcab emoclew"
                 } else {
                     htmlElem.setAttribute('dir', 'ltr');
                     document.body.setAttribute('dir', 'ltr'); // ADDED THIS TO FIX CSS TARGETING
-                    localStorage.setItem('bluewaveRTL', 'false');
+                    localStorage.setItem('AquaCareRTL', 'false');
                     if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
                     // Restore original text
-                    if(brandText) brandText.textContent = 'Bluewave';
+                    if(brandText) brandText.textContent = 'AquaCare';
                     if(headingText) headingText.textContent = 'welcome back';
                 }
             }
 
-            const savedRTL = localStorage.getItem('bluewaveRTL');
+            const savedRTL = localStorage.getItem('AquaCareRTL');
             setRTL(savedRTL === 'true');
             rtlToggle.addEventListener('click', function() {
                 const isRTL = htmlElem.getAttribute('dir') === 'rtl';
@@ -892,19 +905,19 @@ body.dark .social-icon{
                 return dotAfterAt > atIndex + 1 && email.length - dotAfterAt > 1;
             }
 
-            // Submit handler — demo login for Bluewave pool service
+            // Submit handler — demo login for AquaCare pool service
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 var email = emailInput.value.trim();
                 var password = passwordInput.value.trim();
 
                 if (!email) {
-                    showDemoMessage("🔔 Please enter your email address to access Bluewave mobile pool service.", true);
+                    showDemoMessage("🔔 Please enter your email address to access AquaCare mobile pool service.", true);
                     emailInput.focus();
                     return;
                 }
                 if (!isValidEmail(email)) {
-                    showDemoMessage("📧 Enter a valid email address (e.g., pool@bluewave.com).", true);
+                    showDemoMessage("📧 Enter a valid email address (e.g., pool@AquaCare.com).", true);
                     emailInput.focus();
                     return;
                 }
@@ -915,7 +928,7 @@ body.dark .social-icon{
                 }
 
                 var rememberMsg = rememberCheck.checked ? " ✓ Remember me enabled" : "";
-                showDemoMessage("🏊‍♂️📱 You're now signed in to Bluewave Mobile!" + rememberMsg +
+                showDemoMessage("🏊‍♂️📱 You're now signed in to AquaCare Mobile!" + rememberMsg +
                     "\n\n✨ (demo mode · pool chemistry & cleaning dashboard)\nWelcome, " + email +
                     "\nYour water is balanced and crystal clear! ✨");
                 emailInput.value = '';
@@ -926,12 +939,12 @@ body.dark .social-icon{
 
             forgotLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                showDemoMessage("🔐 A password reset link for your Bluewave pool account will be sent to your email. (demo)");
+                showDemoMessage("🔐 A password reset link for your AquaCare pool account will be sent to your email. (demo)");
             });
 
             googleIcon.addEventListener('click', function() {
                 showDemoMessage(
-                    "🌊 Google Sign-In demo · Bluewave mobile pool service syncs your schedules seamlessly.");
+                    "🌊 Google Sign-In demo · AquaCare mobile pool service syncs your schedules seamlessly.");
             });
             facebookIcon.addEventListener('click', function() {
                 showDemoMessage(
@@ -939,7 +952,7 @@ body.dark .social-icon{
             });
             appleIcon.addEventListener('click', function() {
                 showDemoMessage(
-                    "🍏 Apple ID demo · privacy-first access to Bluewave’s mobile-first pool care ecosystem.");
+                    "🍏 Apple ID demo · privacy-first access to AquaCare’s mobile-first pool care ecosystem.");
             });
 
             emailInput.focus();

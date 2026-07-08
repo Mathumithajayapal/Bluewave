@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bluewave | Get in Touch — Professional Pool Care</title>
+  <title>AquaCare | Get in Touch — Professional Pool Care</title>
   <link rel="icon" type="image/jpeg" href="image/pool (4).jpg">  
 
   
@@ -684,7 +684,7 @@
       color: var(--pool-primary);
     }
 
-    #bluewaveMap {
+    #AquaCareMap {
       height: 420px;
       width: 100%;
       z-index: 1;
@@ -797,7 +797,7 @@
         grid-template-columns: 1fr;
         gap: 0;
       }
-      #bluewaveMap {
+      #AquaCareMap {
         height: 300px;
       }
       .map-header {
@@ -826,6 +826,19 @@
 .mobile-link.active i {
   color: #000;
 }
+.logo-text{
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #000;        /* Black in Light Mode */
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .logo-text{
+    color: #fff;        /* White in Dark Mode */
+}
   </style>
 </head>
 <body>
@@ -833,7 +846,7 @@
 <header class="site-header">
   <div class="nav-container">
     <a href="#" class="logo">
-      <span class="logo-text">Bluewave</span>
+      <span class="logo-text">AquaCare</span>
     </a>
     <div class="desktop-nav">
       <div class="dropdown">
@@ -887,7 +900,7 @@
 <section class="hero-banner">
   <div class="hero-content">
     <h1 class="hero-title">Crystal Clear Waters Start Here</h1>
-    <p class="hero-sub">Professional pool care & smart chemistry — Dive into excellence with Bluewave.</p>
+    <p class="hero-sub">Professional pool care & smart chemistry — Dive into excellence with AquaCare.</p>
   </div>
 </section>
 
@@ -897,7 +910,7 @@
     <div class="contact-info-card">
       <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
       <h3>Visit Us</h3>
-      <p>1560 Bluewave Avenue, Suite 200<br>Miami, FL 33132, United States</p>
+      <p>1560 AquaCare Avenue, Suite 200<br>Miami, FL 33132, United States</p>
     </div>
     <div class="contact-info-card">
       <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
@@ -907,7 +920,7 @@
     <div class="contact-info-card">
       <div class="info-icon"><i class="fas fa-envelope"></i></div>
       <h3>Email Us</h3>
-      <p><a href="mailto:hello@bluewavepool.com">hello@bluewavepool.com</a><br>Response within 24h</p>
+      <p><a href="mailto:hello@AquaCarepool.com">hello@AquaCarepool.com</a><br>Response within 24h</p>
     </div>
     <div class="contact-info-card">
       <div class="info-icon"><i class="fas fa-share-alt"></i></div>
@@ -964,12 +977,12 @@
 <div class="map-fullwidth">
   <div class="map-card-full">
     <div class="map-header">
-      <h3><i class="fas fa-map-pin"></i> Bluewave Headquarters</h3>
+      <h3><i class="fas fa-map-pin"></i> AquaCare Headquarters</h3>
       <div class="map-badge"><i class="fas fa-water"></i> Miami Pool Innovation Hub</div>
     </div>
-    <div id="bluewaveMap"></div>
+    <div id="AquaCareMap"></div>
     <div class="map-footer-info">
-      <span><i class="fas fa-location-dot"></i> 1560 Bluewave Avenue, Miami, FL 33132</span>
+      <span><i class="fas fa-location-dot"></i> 1560 AquaCare Avenue, Miami, FL 33132</span>
       <span><i class="fas fa-clock"></i> Mon–Fri: 8am – 7pm EST</span>
     </div>
   </div>
@@ -979,7 +992,7 @@
   <div class="footer-grid">
     <div class="footer-col">
       <a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
-        <span class="logo-text">Bluewave</span>
+        <span class="logo-text">AquaCare</span>
       </a>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Professional mobile pool cleaning & chemical balancing. Crystal clear results, sustainable technology.</p>
     </div>
@@ -1011,7 +1024,7 @@
     </div>
   </div>
   <div class="copyright">
-    © 2026 Bluewave Pool Services — Mobile-first chemistry & cleaning. All rights reserved.
+    © 2026 AquaCare Pool Services — Mobile-first chemistry & cleaning. All rights reserved.
   </div>
 </footer>
 
@@ -1049,10 +1062,10 @@
       if(mobileThemeToggle) {
         mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
       }
-      if(window.bluewaveMap && typeof window.updateMapTheme === 'function') {
+      if(window.AquaCareMap && typeof window.updateMapTheme === 'function') {
         window.updateMapTheme();
       }
-      localStorage.setItem('bluewaveTheme', isDark ? 'dark' : 'light');
+      localStorage.setItem('AquaCareTheme', isDark ? 'dark' : 'light');
     }
 
     function toggleTheme() {
@@ -1073,18 +1086,18 @@
         if(rtlSpan) rtlSpan.textContent = 'RTL'; 
         if(mobileRtlSpan) mobileRtlSpan.textContent = 'RTL Mode'; 
       }
-      localStorage.setItem('bluewaveDirection', isRtl ? 'rtl' : 'ltr');
+      localStorage.setItem('AquaCareDirection', isRtl ? 'rtl' : 'ltr');
       closeMenu();
     }
     function toggleRTL() { setDirection(htmlEl.getAttribute('dir') !== 'rtl'); }
     if(rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
     if(mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
 
-    const savedTheme = localStorage.getItem('bluewaveTheme');
+    const savedTheme = localStorage.getItem('AquaCareTheme');
     if(savedTheme === 'dark') applyThemeUI(true);
     else applyThemeUI(false);
     
-    const savedDir = localStorage.getItem('bluewaveDirection');
+    const savedDir = localStorage.getItem('AquaCareDirection');
     if(savedDir === 'rtl') setDirection(true);
     else setDirection(false);
     
@@ -1099,7 +1112,7 @@
           alert('Please fill out your name and email address.');
           return;
         }
-        alert(`✨ Thank you ${firstName}! Your message has been sent to Bluewave pool experts. We'll reach out within 24h.`);
+        alert(`✨ Thank you ${firstName}! Your message has been sent to AquaCare pool experts. We'll reach out within 24h.`);
         contactForm.reset();
       });
     }
@@ -1111,7 +1124,7 @@
     let currentTileLayer = null;
 
     function initMap() {
-      const mapContainer = document.getElementById('bluewaveMap');
+      const mapContainer = document.getElementById('AquaCareMap');
       if (!mapContainer || mapInstance) return;
       
       const isDark = htmlEl.classList.contains('dark');
@@ -1119,7 +1132,7 @@
         ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
         : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
       
-      mapInstance = L.map('bluewaveMap').setView([mapLat, mapLng], 14);
+      mapInstance = L.map('AquaCareMap').setView([mapLat, mapLng], 14);
       currentTileLayer = L.tileLayer(tileUrl, {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; CartoDB',
         subdomains: 'abcd',
@@ -1134,8 +1147,8 @@
       });
       const marker = L.marker([mapLat, mapLng], { icon: customIcon }).addTo(mapInstance);
       marker.bindPopup(`
-        <b>🏊 Bluewave HQ</b><br>
-        1560 Bluewave Avenue, Suite 200<br>
+        <b>🏊 AquaCare HQ</b><br>
+        1560 AquaCare Avenue, Suite 200<br>
         Miami, FL 33132<br>
         <i>Your crystal-clear pool specialists</i>
       `).openPopup();
